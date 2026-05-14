@@ -1,0 +1,10 @@
+flowchart TD
+  TH[Take-home submitted] --> S1[Criterio score]
+  TH --> S2[Autonomy score]
+  TH --> S3[Tech score]
+  S1 --> AG[Aggregate]
+  S2 --> AG
+  S3 --> AG
+  AG -->|>= threshold| P[Advance to tech interview]
+  AG -->|borderline| I[Request iteration]
+  AG -->|below| R[Polite reject]

@@ -1,0 +1,22 @@
+# TailorMind — Talent
+
+Hiring site for senior AI-empowered full-stack developers, remote, based in Peru.
+Bilingual: English (/en/) and Spanish (/es/).
+
+## Key pages
+- /en/ , /es/                  — landing
+- /en/role/ , /es/role/        — job description (Senior Full-stack, AI-empowered)
+- /en/process/ , /es/process/  — 5-stage hiring process, ~2–3 weeks total
+- /en/flow/ , /es/flow/        — Mermaid flow diagrams of the process
+- /en/assessment/ , /es/assessment/ — autonomy + criterio assessment overview
+- /en/apply/ , /es/apply/      — application form
+- /en/privacy/ , /es/privacy/  — privacy notice (Peru Ley 29733)
+
+## What we measure
+- Criterio: judgment under uncertainty (Kahneman/Klein, Tetlock, Duke, Simon).
+- Autonomy: drives ambiguous work to clarity, async-first.
+- AI fluency: uses Claude as a force multiplier.
+- Engineering rigor: full-stack, tests, docs.
+
+## Contact
+billy@tailormind.io

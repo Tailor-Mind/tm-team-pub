@@ -1,0 +1,48 @@
+---
+import { t, type Lang } from '../i18n/ui';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+// Apps Script Web App URL — set after clasp deploy.
+// Public site reads at runtime from a meta tag so it can be swapped without rebuild.
+---
+<div class="not-prose border border-zinc-200 rounded-lg p-6 my-6 bg-white">
+  <form id="comp-form" class="flex flex-col gap-3 sm:flex-row sm:items-end">
+    <label class="flex-1 text-sm">
+      <span class="block text-zinc-700 mb-1">{t(lang,'comp.gateLabel')}</span>
+      <input type="email" name="email" required
+             class="w-full border border-zinc-300 rounded px-3 py-2"
+             placeholder="you@example.com" />
+    </label>
+    <button type="submit"
+            class="px-4 py-2 rounded bg-[color:var(--color-brand-600)] text-white">
+      {t(lang,'comp.reveal')}
+    </button>
+  </form>
+  <div id="comp-out" class="mt-4 hidden text-zinc-800 font-medium">
+    {t(lang,'comp.value')}
+  </div>
+</div>
+<script is:inline define:vars={{ lang }}>
+  const form = document.getElementById('comp-form');
+  const out = document.getElementById('comp-out');
+  const endpoint = document.querySelector('meta[name="tm-track-endpoint"]')?.content || '';
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = new FormData(form).get('email');
+    out.classList.remove('hidden');
+    if (endpoint) {
+      try {
+        await fetch(endpoint, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            event: 'comp_reveal', email, lang,
+            path: location.pathname, ts: new Date().toISOString(),
+            ref: document.referrer || null,
+          }),
+        });
+      } catch {}
+    }
+  });
+</script>

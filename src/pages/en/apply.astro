@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+const formUrl = import.meta.env.PUBLIC_APPLY_FORM_URL_EN ?? '#';
+---
+<Base lang="en" title="Apply — TailorMind">
+  <h1>Apply</h1>
+  <p>Submit the form below. We acknowledge every application by email.</p>
+  <ol>
+    <li>Upload your CV (PDF).</li>
+    <li>Provide your LinkedIn URL.</li>
+    <li>Answer two short reasoning questions — calibrated, not graded for "correctness".</li>
+    <li>Choose your preferred language for further communication.</li>
+  </ol>
+  {formUrl !== '#'
+    ? <iframe src={formUrl} width="100%" height="1200" class="border rounded">Loading…</iframe>
+    : <p class="not-prose p-4 bg-amber-50 border border-amber-300 rounded">Google Form URL not configured yet. Set <code>PUBLIC_APPLY_FORM_URL_EN</code>.</p>}
+  <p>Data handling: see <a href="/en/privacy/">privacy</a>.</p>
+</Base>

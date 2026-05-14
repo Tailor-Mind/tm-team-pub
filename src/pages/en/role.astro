@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+import CompReveal from '../../components/CompReveal.astro';
+
+const jobPosting = {
+  '@context': 'https://schema.org',
+  '@type': 'JobPosting',
+  title: 'Senior Full-stack Developer (AI-empowered)',
+  description: 'Senior full-stack developer who works alongside Claude as a primary tool, owning ambiguous problems end-to-end.',
+  datePosted: new Date().toISOString().slice(0, 10),
+  employmentType: ['FULL_TIME'],
+  hiringOrganization: { '@type': 'Organization', name: 'TailorMind', sameAs: 'https://tailormind.io' },
+  jobLocationType: 'TELECOMMUTE',
+  applicantLocationRequirements: { '@type': 'Country', name: 'Peru' },
+  qualifications: '5+ years full-stack engineering. Strong written reasoning. Demonstrated AI-tooling fluency.',
+  responsibilities: 'Ship full-stack features end-to-end with Claude. Maintain a decision journal. Run premortems before major work.',
+};
+---
+<Base lang="en" title="Senior Full-stack Developer (AI-empowered) — TailorMind">
+  <script type="application/ld+json" set:html={JSON.stringify(jobPosting)} />
+
+  <h1>Senior Full-stack Developer (AI-empowered)</h1>
+  <p class="lead">Remote · Peru · Senior · Claude account provided</p>
+
+  <h2>Who we are</h2>
+  <p>TailorMind builds AI-empowered products. We are a small team that ships, measures, and iterates with discipline.</p>
+
+  <h2>The role</h2>
+  <p>You will own ambiguous full-stack problems end-to-end, using Claude as your primary force multiplier. We do not measure typing speed — we measure <strong>criterio</strong>: the judgment to decide what to build, what to skip, when to ask, and when to commit.</p>
+
+  <h3>You will</h3>
+  <ul>
+    <li>Ship features end-to-end: backend, frontend, infra, tests.</li>
+    <li>Use Claude (Code, API, agents) as a daily tool. Provide transcripts in PRs.</li>
+    <li>Run premortems before non-trivial work.</li>
+    <li>Maintain a decision journal (what / why / expected / confidence %).</li>
+    <li>Calibrate your own predictions and review them at intervals.</li>
+    <li>Communicate primarily in writing, async-first.</li>
+  </ul>
+
+  <h3>We expect</h3>
+  <ul>
+    <li><strong>5+ years</strong> full-stack engineering, mid-to-senior trajectory.</li>
+    <li>Strong TypeScript or Python (both is ideal). Comfortable across DB, API, UI, deploy.</li>
+    <li>Strong written reasoning — short, clear, calibrated.</li>
+    <li>Fluency with at least one frontier-model coding assistant (Claude Code / Cursor / Copilot).</li>
+    <li>English: working level (read/write/meeting).</li>
+  </ul>
+
+  <h3>Nice to have</h3>
+  <ul>
+    <li>Prior remote experience in distributed teams.</li>
+    <li>OSS contributions, technical writing, or talks.</li>
+    <li>Experience building Claude Agent SDK / tool-use systems.</li>
+  </ul>
+
+  <h2>What we offer</h2>
+  <ul>
+    <li>Remote, async-first work.</li>
+    <li><strong>Claude account provided</strong> (Pro/Max + API budget).</li>
+    <li>Contract under Peruvian law — <em>planilla</em> or <em>recibo por honorarios (RxH)</em>, to be defined per candidate.</li>
+    <li>Equipment stipend.</li>
+  </ul>
+
+  <h2>Compensation</h2>
+  <p>Base monthly compensation expressed as a multiple of the Peruvian minimum wage (RMV), in PEN.</p>
+  <CompReveal lang="en" />
+  <p class="text-sm text-zinc-500">Revealing logs your email to our pipeline. We use it only for this hiring process. See <a href="/en/privacy/">privacy</a>.</p>
+
+  <p><a href="/en/apply/" class="not-prose inline-block px-4 py-2 rounded bg-[color:var(--color-brand-600)] text-white">Apply now</a></p>
+</Base>

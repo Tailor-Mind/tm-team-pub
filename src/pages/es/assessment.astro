@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base lang="es" title="Evaluación — TailorMind">
+  <h1>Resumen de la evaluación</h1>
+  <p>Tres componentes, evaluados de forma independiente. Compartimos rúbricas después para que entiendas qué medimos.</p>
+
+  <h2>1. Test de autonomía (take-home)</h2>
+  <p>Recibes un spec deliberadamente ambiguo de un feature full-stack pequeño. <strong>Presupuesto: 4–6 horas</strong> en una ventana de 5 días. Evaluamos:</p>
+  <ul>
+    <li>Calidad de preguntas clarificadoras vs supuestos documentados.</li>
+    <li>Calidad de código (tests, legibilidad, estructura).</li>
+    <li><strong>Premortem</strong> en la descripción del PR.</li>
+    <li>Entrada de <strong>diario de decisiones</strong> con el trabajo.</li>
+    <li>Transcripción de Claude adjunta (cualquier herramienta: Code, web, API).</li>
+  </ul>
+
+  <h2>2. Banco de preguntas de criterio (opción múltiple + ensayo corto)</h2>
+  <p>~25 ítems basados en la literatura sobre juicio bajo incertidumbre (Kahneman/Klein, Tetlock, Duke, Simon). Categorías:</p>
+  <ul>
+    <li>Calidad de decisión vs calidad de resultado (sesgo de <em>resulting</em>).</li>
+    <li>Razonamiento por premortem.</li>
+    <li>Calibración / intervalos de confianza (Brier).</li>
+    <li>Trilema de costos: búsqueda / error / oportunidad.</li>
+    <li>Actualización de creencias con evidencia.</li>
+    <li>Racionalidad acotada / satisficing.</li>
+  </ul>
+  <p>Tiempo esperado: <strong>45–60 minutos</strong>. Apuntes abiertos. Evaluamos razonamiento, no memoria.</p>
+
+  <h2>3. Entrevista de criterio</h2>
+  <p>Traes un <strong>diario de decisiones</strong> con 3 decisiones recientes, escrito antes de la entrevista:</p>
+  <ol>
+    <li>Qué decidiste.</li>
+    <li>Por qué — incluyendo la alternativa que rechazaste.</li>
+    <li>Qué esperabas que ocurriera.</li>
+    <li>Tu confianza en ese momento (%).</li>
+  </ol>
+  <p>Las recorremos buscando <em>resulting</em> y sesgo retrospectivo. No hay preguntas trampa.</p>
+
+  <h2>Cómo se ve bien hecho</h2>
+  <ul>
+    <li>Separas la calidad de la decisión de la calidad del resultado.</li>
+    <li>Actualizas creencias en incrementos pequeños cuando la evidencia cambia — ni nada, ni todo de golpe.</li>
+    <li>Puedes nombrar el costo que negociaste (más investigación vs decisión rápida vs oportunidad).</li>
+  </ul>
+</Base>

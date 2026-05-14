@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base lang="en" title="Assessment — TailorMind">
+  <h1>Assessment overview</h1>
+  <p>Three components, scored independently. We share rubrics after completion so you understand what we measured.</p>
+
+  <h2>1. Autonomy test (take-home)</h2>
+  <p>You will receive a deliberately ambiguous spec for a small full-stack feature. <strong>Time budget: 4–6 hours</strong> in a 5-day window. We score:</p>
+  <ul>
+    <li>Quality of clarifying questions vs documented assumptions.</li>
+    <li>Code quality (tests, readability, structure).</li>
+    <li><strong>Premortem</strong> included in the PR description.</li>
+    <li><strong>Decision journal</strong> entry committed with the work.</li>
+    <li>Claude transcript attached (any tool: Code, web, API).</li>
+  </ul>
+
+  <h2>2. Criterio question bank (multiple choice + short essay)</h2>
+  <p>~25 items grounded in the research literature on judgment under uncertainty (Kahneman/Klein, Tetlock, Duke, Simon). Categories:</p>
+  <ul>
+    <li>Decision quality vs outcome quality (resulting bias).</li>
+    <li>Premortem reasoning.</li>
+    <li>Calibration / confidence intervals (Brier-scored).</li>
+    <li>Cost trilemma: search / error / opportunity.</li>
+    <li>Belief updating with evidence.</li>
+    <li>Bounded rationality / satisficing.</li>
+  </ul>
+  <p>Expected time: <strong>45–60 minutes</strong>. Open notes. We score reasoning, not memorization.</p>
+
+  <h2>3. Criterio interview</h2>
+  <p>You bring a <strong>decision journal</strong> with 3 recent work decisions, written before the interview:</p>
+  <ol>
+    <li>What you decided.</li>
+    <li>Why — including the alternative you rejected.</li>
+    <li>What you expected to happen.</li>
+    <li>Your confidence at the time (%).</li>
+  </ol>
+  <p>We walk through them and probe for resulting and hindsight bias. There are no trick questions.</p>
+
+  <h2>What good looks like</h2>
+  <ul>
+    <li>You separate the quality of your decision from the quality of the outcome.</li>
+    <li>You update beliefs in small increments when evidence shifts — not at all, or wholesale.</li>
+    <li>You can name the cost you traded off (more research vs faster decision vs opportunity).</li>
+  </ul>
+</Base>

@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props { title: string; lang: Lang; description?: string; }
+const { title, lang, description } = Astro.props;
+const other = lang === 'en' ? 'es' : 'en';
+const path = Astro.url.pathname.replace(/^\/(en|es)/, '');
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta name="tm-track-endpoint" content={import.meta.env.PUBLIC_TRACK_ENDPOINT ?? ''} />
+    <link rel="alternate" hreflang={other} href={`/${other}${path}`} />
+    <link rel="alternate" hreflang="x-default" href={`/en${path}`} />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <header class="border-b border-zinc-200 bg-white">
+      <nav class="max-w-5xl mx-auto px-4 py-4 flex items-center gap-6 text-sm">
+        <a href={`/${lang}/`} class="font-bold text-[color:var(--color-brand-600)]">TailorMind</a>
+        <a href={`/${lang}/process/`}>{t(lang,'nav.process')}</a>
+        <a href={`/${lang}/role/`}>{t(lang,'nav.role')}</a>
+        <a href={`/${lang}/flow/`}>{t(lang,'nav.flow')}</a>
+        <a href={`/${lang}/assessment/`}>{t(lang,'nav.assessment')}</a>
+        <a href={`/${lang}/apply/`} class="ml-auto px-3 py-1.5 rounded bg-[color:var(--color-brand-600)] text-white">{t(lang,'nav.apply')}</a>
+        <a href={`/${other}${path}`} class="text-xs text-zinc-500">{other.toUpperCase()}</a>
+      </nav>
+    </header>
+    <main class="max-w-5xl mx-auto px-4 py-10 flex-1 w-full prose prose-zinc">
+      <slot />
+    </main>
+    <footer class="border-t border-zinc-200 bg-white text-sm text-zinc-500">
+      <div class="max-w-5xl mx-auto px-4 py-6 flex gap-4">
+        <span>© TailorMind</span>
+        <a href={`/${lang}/privacy/`}>{t(lang,'nav.privacy')}</a>
+        <a href="/llm.txt">llm.txt</a>
+      </div>
+    </footer>
+  </body>
+</html>
