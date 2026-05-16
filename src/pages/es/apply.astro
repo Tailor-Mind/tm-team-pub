@@ -12,7 +12,13 @@ const formUrl = import.meta.env.PUBLIC_APPLY_FORM_URL_ES ?? '#';
     <li>Elige tu idioma preferido para futuras comunicaciones.</li>
   </ol>
   {formUrl !== '#'
-    ? <iframe src={formUrl} width="100%" height="1200" class="border rounded">Cargando…</iframe>
+    ? <p class="not-prose">
+        <a href={formUrl} target="_blank" rel="noopener"
+           class="inline-block px-5 py-3 rounded bg-[color:var(--color-brand-600)] text-white font-medium">
+          Abrir formulario de postulación ↗
+        </a>
+        <span class="block text-sm text-zinc-500 mt-2">Se abre en otra pestaña (Google Forms — la subida de CV lo requiere).</span>
+      </p>
     : <p class="not-prose p-4 bg-amber-50 border border-amber-300 rounded">URL de Google Form no configurada todavía. Definir <code>PUBLIC_APPLY_FORM_URL_ES</code>.</p>}
   <p>Manejo de datos: ver <a href="/es/privacy/">privacidad</a>.</p>
 </Base>
