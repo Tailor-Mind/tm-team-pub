@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 const formUrl = import.meta.env.PUBLIC_APPLY_FORM_URL_EN ?? '#';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base lang="en" title="Apply — TailorMind">
   <h1>Apply</h1>
@@ -20,5 +21,5 @@ const formUrl = import.meta.env.PUBLIC_APPLY_FORM_URL_EN ?? '#';
         <span class="block text-sm text-zinc-500 mt-2">Opens in a new tab (Google Forms — the CV upload step requires it).</span>
       </p>
     : <p class="not-prose p-4 bg-amber-50 border border-amber-300 rounded">Google Form URL not configured yet. Set <code>PUBLIC_APPLY_FORM_URL_EN</code>.</p>}
-  <p>Data handling: see <a href="/en/privacy/">privacy</a>.</p>
+  <p>Data handling: see <a href={`${b}/en/privacy/`}>privacy</a>.</p>
 </Base>

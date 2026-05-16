@@ -1,15 +1,16 @@
 ---
 import Base from '../../layouts/Base.astro';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base lang="en" title="Process flow — TailorMind">
   <h1>Process flow</h1>
   <p>Candidate journey from application to offer. Diagrams render from Mermaid source committed in the repo.</p>
 
   <h2>Hiring funnel</h2>
-  <p><img src="/img/flows/hiring-funnel.svg" alt="Hiring funnel: Application → Screening → Take-home → Tech interview → Criterio interview → Offer." /></p>
+  <p><img src={`${b}/img/flows/hiring-funnel.svg`} alt="Hiring funnel: Application → Screening → Take-home → Tech interview → Criterio interview → Offer." /></p>
 
   <h2>Take-home scoring</h2>
-  <p><img src="/img/flows/scoring.svg" alt="Take-home scoring flow: Criterio score + Autonomy score + Tech score → pass/iterate/reject." /></p>
+  <p><img src={`${b}/img/flows/scoring.svg`} alt="Take-home scoring flow: Criterio score + Autonomy score + Tech score → pass/iterate/reject." /></p>
 
   <details>
     <summary>Mermaid source</summary>

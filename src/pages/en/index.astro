@@ -1,15 +1,16 @@
 ---
 import Base from '../../layouts/Base.astro';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base lang="en" title="TailorMind — Talent" description="Hiring senior AI-empowered developers, remote from Peru.">
   <h1>Hiring senior AI-empowered developers</h1>
   <p class="lead">Remote-first, based in Peru. We provide your Claude account.</p>
   <p>We hire for <strong>criterio</strong> — the capacity to make sound judgments under uncertainty — and for autonomy with AI tooling.</p>
   <ul>
-    <li><a href="/en/role/">Read the role</a></li>
-    <li><a href="/en/process/">How our hiring process works</a></li>
-    <li><a href="/en/flow/">Process flow diagram</a></li>
-    <li><a href="/en/assessment/">About the assessment</a></li>
-    <li><a href="/en/apply/">Apply</a></li>
+    <li><a href={`${b}/en/role/`}>Read the role</a></li>
+    <li><a href={`${b}/en/process/`}>How our hiring process works</a></li>
+    <li><a href={`${b}/en/flow/`}>Process flow diagram</a></li>
+    <li><a href={`${b}/en/assessment/`}>About the assessment</a></li>
+    <li><a href={`${b}/en/apply/`}>Apply</a></li>
   </ul>
 </Base>

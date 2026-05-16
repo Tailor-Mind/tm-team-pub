@@ -7,7 +7,9 @@ import tailwindcss from '@tailwindcss/vite';
 // Example: 'https://<org-or-user>.github.io'
 // If served from a project subpath, also set `base: '/<repo-name>'`.
 export default defineConfig({
-  site: 'https://tailormind.github.io',
+  site: 'https://tailor-mind.github.io',
+  base: '/tm-team-pub',
+  trailingSlash: 'always',
   integrations: [sitemap()],
   vite: { plugins: [tailwindcss()] },
   i18n: {

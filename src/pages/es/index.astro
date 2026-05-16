@@ -1,15 +1,16 @@
 ---
 import Base from '../../layouts/Base.astro';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base lang="es" title="TailorMind — Talento" description="Contratamos desarrolladores senior potenciados por IA, remoto desde Perú.">
   <h1>Contratamos desarrolladores senior potenciados por IA</h1>
   <p class="lead">Remoto, basado en Perú. Te damos tu cuenta de Claude.</p>
   <p>Contratamos por <strong>criterio</strong> — la capacidad de emitir juicios acertados bajo incertidumbre — y por autonomía con herramientas de IA.</p>
   <ul>
-    <li><a href="/es/role/">Sobre el rol</a></li>
-    <li><a href="/es/process/">Cómo funciona nuestro proceso</a></li>
-    <li><a href="/es/flow/">Diagrama del proceso</a></li>
-    <li><a href="/es/assessment/">Sobre la evaluación</a></li>
-    <li><a href="/es/apply/">Postular</a></li>
+    <li><a href={`${b}/es/role/`}>Sobre el rol</a></li>
+    <li><a href={`${b}/es/process/`}>Cómo funciona nuestro proceso</a></li>
+    <li><a href={`${b}/es/flow/`}>Diagrama del proceso</a></li>
+    <li><a href={`${b}/es/assessment/`}>Sobre la evaluación</a></li>
+    <li><a href={`${b}/es/apply/`}>Postular</a></li>
   </ul>
 </Base>

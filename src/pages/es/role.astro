@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import CompReveal from '../../components/CompReveal.astro';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base lang="es" title="Desarrollador Full-stack Senior (AI-empowered) — TailorMind">
   <h1>Desarrollador Full-stack Senior (AI-empowered)</h1>
@@ -49,7 +50,7 @@ import CompReveal from '../../components/CompReveal.astro';
   <h2>Compensación</h2>
   <p>Compensación base mensual expresada como múltiplo de la Remuneración Mínima Vital (RMV) peruana, en PEN.</p>
   <CompReveal lang="es" />
-  <p class="text-sm text-zinc-500">Revelar registra tu email en nuestro pipeline. Solo lo usamos para este proceso. Ver <a href="/es/privacy/">privacidad</a>.</p>
+  <p class="text-sm text-zinc-500">Revelar registra tu email en nuestro pipeline. Solo lo usamos para este proceso. Ver <a href={`${b}/es/privacy/`}>privacidad</a>.</p>
 
-  <p><a href="/es/apply/" class="not-prose inline-block px-4 py-2 rounded bg-[color:var(--color-brand-600)] text-white">Postular</a></p>
+  <p><a href={`${b}/es/apply/`} class="not-prose inline-block px-4 py-2 rounded bg-[color:var(--color-brand-600)] text-white">Postular</a></p>
 </Base>

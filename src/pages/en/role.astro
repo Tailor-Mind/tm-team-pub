@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import CompReveal from '../../components/CompReveal.astro';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const jobPosting = {
   '@context': 'https://schema.org',
@@ -65,7 +66,7 @@ const jobPosting = {
   <h2>Compensation</h2>
   <p>Base monthly compensation expressed as a multiple of the Peruvian minimum wage (RMV), in PEN.</p>
   <CompReveal lang="en" />
-  <p class="text-sm text-zinc-500">Revealing logs your email to our pipeline. We use it only for this hiring process. See <a href="/en/privacy/">privacy</a>.</p>
+  <p class="text-sm text-zinc-500">Revealing logs your email to our pipeline. We use it only for this hiring process. See <a href={`${b}/en/privacy/`}>privacy</a>.</p>
 
-  <p><a href="/en/apply/" class="not-prose inline-block px-4 py-2 rounded bg-[color:var(--color-brand-600)] text-white">Apply now</a></p>
+  <p><a href={`${b}/en/apply/`} class="not-prose inline-block px-4 py-2 rounded bg-[color:var(--color-brand-600)] text-white">Apply now</a></p>
 </Base>
