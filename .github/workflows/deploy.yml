@@ -28,11 +28,16 @@ jobs:
       - name: Install
         run: npm ci
 
+      - name: Install mermaid-cli + Chrome
+        run: |
+          npm i -D @mermaid-js/mermaid-cli
+          npx puppeteer browsers install chrome
+
       - name: Render Mermaid diagrams to SVG
         run: |
           mkdir -p public/img/flows
-          npx -y -p @mermaid-js/mermaid-cli mmdc -p .puppeteer.json -i diagrams/hiring-funnel.mmd -o public/img/flows/hiring-funnel.svg -b transparent
-          npx -y -p @mermaid-js/mermaid-cli mmdc -p .puppeteer.json -i diagrams/scoring.mmd       -o public/img/flows/scoring.svg       -b transparent
+          npx mmdc -p .puppeteer.json -i diagrams/hiring-funnel.mmd -o public/img/flows/hiring-funnel.svg -b transparent
+          npx mmdc -p .puppeteer.json -i diagrams/scoring.mmd       -o public/img/flows/scoring.svg       -b transparent
 
       - name: Build
         env:
