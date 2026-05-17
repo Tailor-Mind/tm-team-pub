@@ -11,6 +11,7 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
     <li>Provide your LinkedIn URL.</li>
     <li>Answer two short reasoning questions — calibrated, not graded for "correctness".</li>
     <li>Choose your preferred language for further communication.</li>
+    <li>Leave the "Take-home repo URL" field blank for now. After submitting, you'll get a confirmation email with an <strong>edit link</strong> — come back, complete the <a href={`${b}/en/take-home/`}>take-home</a>, then reopen the form via that link and paste your repo URL. We record elapsed time from first submit to URL paste.</li>
   </ol>
   {formUrl !== '#'
     ? <p class="not-prose">

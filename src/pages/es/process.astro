@@ -1,24 +1,27 @@
 ---
 import Base from '../../layouts/Base.astro';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base lang="es" title="Proceso de contratación — TailorMind">
   <h1>Proceso de contratación</h1>
-  <p>Cinco etapas. Total ~2–3 semanas. Async-first con dos conversaciones en vivo cerca del final.</p>
+  <p>Cuatro etapas. Total ~2–3 semanas. Async-first con una conversación en vivo antes de la oferta.</p>
 
-  <h2>Etapa 1 — Revisión de postulación <small>(~2 días)</small></h2>
+  <h2>Etapa 1 — Revisión de postulación <small>(~5 días)</small></h2>
   <p>Envías el Google Form: CV, LinkedIn, respuestas cortas. Revisamos fit y tu razonamiento escrito.</p>
 
-  <h2>Etapa 2 — Take-home asíncrono <small>(ventana: 5 días, trabajo: 4–6h)</small></h2>
-  <p>Spec deliberadamente ambiguo. Evaluamos <em>autonomía</em> (preguntas clarificadoras vs supuestos documentados), calidad de código, y <em>criterio</em> (premortem en PR, entrada de diario de decisiones, transcripción de Claude).</p>
+  <h2>Etapa 2 — Take-home asíncrono <small>(objetivo &lt;1h, sin tope estricto)</small></h2>
+  <p>El spec es <a href={`${b}/es/take-home/`}>público</a>: menú de restaurante + carrito en Astro + Google Sheets. Registramos el tiempo entre postulación y envío de la URL del repo. Las mismas tres dimensiones que la entrevista — Criterio, Autonomía, Técnico.</p>
 
-  <h2>Etapa 3 — Entrevista técnica <small>(90 min, en vivo)</small></h2>
-  <p>Pair-coding usando Claude. Discutimos tu take-home y exploramos una extensión.</p>
+  <h2>Etapa 3 — Entrevista técnica <small>(75 min, en vivo)</small></h2>
+  <p>Una sola conversación en vivo, tres partes:</p>
+  <ul>
+    <li><strong>Cultura y trayectoria.</strong> Repaso de CV, proyectos recientes, cómo trabajas, fit mutuo.</li>
+    <li><strong>Revisión del take-home.</strong> Conversamos tu entrega — decisiones, trade-offs, qué cambiarías. Indagamos <em>resulting</em> y sesgo retrospectivo sobre una decisión reciente que traigas (qué / por qué / esperado / confianza %).</li>
+    <li><strong>Problema técnico.</strong> Un problema corto en vivo o una extensión del take-home, pair-coding con Claude.</li>
+  </ul>
 
-  <h2>Etapa 4 — Entrevista de criterio <small>(60 min, en vivo)</small></h2>
-  <p>Traes un <strong>diario de decisiones</strong> con 3 decisiones recientes (qué / por qué / resultado esperado / confianza %). Las recorremos buscando <em>resulting</em> y sesgo retrospectivo.</p>
-
-  <h2>Etapa 5 — Cultura y oferta <small>(45 min)</small></h2>
-  <p>Conversación de fit mutuo, compensación, contrato, fecha de inicio.</p>
+  <h2>Etapa 4 — Oferta y negociación <small>(30–45 min)</small></h2>
+  <p>Compensación, contrato, fecha de inicio.</p>
 
   <h2>Qué medimos</h2>
   <ul>

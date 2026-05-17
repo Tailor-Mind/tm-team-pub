@@ -1,18 +1,24 @@
 ---
 import Base from '../../layouts/Base.astro';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base lang="es" title="Evaluación — TailorMind">
   <h1>Resumen de la evaluación</h1>
-  <p>Tres componentes, evaluados de forma independiente. Compartimos rúbricas después para que entiendas qué medimos.</p>
+  <p>Una sola evaluación, dos puntos de observación. Medimos las mismas tres dimensiones — <strong>Criterio</strong>, <strong>Autonomía</strong>, <strong>Técnico</strong> — primero desde tu repo del take-home, luego en vivo en la entrevista técnica. Misma rúbrica, dos señales.</p>
 
-  <h2>1. Test de autonomía (take-home)</h2>
-  <p>Recibes un spec deliberadamente ambiguo de un feature full-stack pequeño. <strong>Presupuesto: 4–6 horas</strong> en una ventana de 5 días. Evaluamos:</p>
+  <h2>Las tres dimensiones</h2>
   <ul>
-    <li>Calidad de preguntas clarificadoras vs supuestos documentados.</li>
-    <li>Calidad de código (tests, legibilidad, estructura).</li>
-    <li><strong>Premortem</strong> en la descripción del PR.</li>
-    <li>Entrada de <strong>diario de decisiones</strong> con el trabajo.</li>
-    <li>Transcripción de Claude adjunta (cualquier herramienta: Code, web, API).</li>
+    <li><strong>Criterio</strong> — juicio bajo incertidumbre: trade-offs que puedes nombrar, cómo separas calidad de decisión de calidad de resultado, qué cortaste y por qué.</li>
+    <li><strong>Autonomía</strong> — llevar trabajo ambiguo a algo entregado sin micromanagement. Documentar supuestos cuenta más que preguntar.</li>
+    <li><strong>Técnico</strong> — calidad de ingeniería full-stack: código, estructura, tests donde importan, deploys que funcionan.</li>
+  </ul>
+
+  <h2>1. Take-home (el spec es público)</h2>
+  <p>La tarea completa está en <a href={`${b}/es/take-home/`}>/es/take-home</a> — léela antes de postular si quieres. Tiempo objetivo <strong>menos de 1 hora</strong>, sin tope estricto. Registramos el tiempo entre tu postulación y el momento en que pegas la URL del repo en el formulario (optimizar el flujo con LLM importa).</p>
+  <ul>
+    <li>Stack fijo: Astro + Google Sheets (vía Apps Script Web App).</li>
+    <li>Entregable: repo público de GitHub + URL live.</li>
+    <li>Envío: reabre tu formulario con el link de edición del email de confirmación, pega la URL del repo en el campo "URL del repo del take-home".</li>
   </ul>
 
   <h2>2. Banco de preguntas de criterio (opción múltiple + ensayo corto)</h2>
@@ -27,8 +33,8 @@ import Base from '../../layouts/Base.astro';
   </ul>
   <p>Tiempo esperado: <strong>45–60 minutos</strong>. Apuntes abiertos. Evaluamos razonamiento, no memoria.</p>
 
-  <h2>3. Entrevista de criterio</h2>
-  <p>Traes un <strong>diario de decisiones</strong> con 3 decisiones recientes, escrito antes de la entrevista:</p>
+  <h2>3. Entrevista técnica — las mismas tres dimensiones, en vivo</h2>
+  <p>Misma rúbrica Criterio / Autonomía / Técnico, aplicada a la conversación en vivo. Como parte de ella traes un <strong>diario de decisiones</strong> con 3 decisiones recientes, escrito antes:</p>
   <ol>
     <li>Qué decidiste.</li>
     <li>Por qué — incluyendo la alternativa que rechazaste.</li>

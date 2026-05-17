@@ -1,24 +1,27 @@
 ---
 import Base from '../../layouts/Base.astro';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base lang="en" title="Hiring process — TailorMind">
   <h1>Hiring process</h1>
-  <p>Five stages. Total ~2–3 weeks. Async-first with two live conversations near the end.</p>
+  <p>Four stages. Total ~2–3 weeks. Async-first with one live conversation before the offer.</p>
 
-  <h2>Stage 1 — Application review <small>(~2 days)</small></h2>
+  <h2>Stage 1 — Application review <small>(~5 days)</small></h2>
   <p>You submit the Google Form: CV, LinkedIn, short answers. We screen for fit and read your written reasoning.</p>
 
-  <h2>Stage 2 — Async take-home <small>(window: 5 days, work: 4–6h)</small></h2>
-  <p>Deliberately ambiguous spec. We score <em>autonomy</em> (clarifying questions vs documented assumptions), code quality, and <em>criterio</em> (premortem in PR description, decision journal entry, Claude transcript).</p>
+  <h2>Stage 2 — Async take-home <small>(target &lt;1h, no hard cap)</small></h2>
+  <p>The spec is <a href={`${b}/en/take-home/`}>public</a>: restaurant menu + cart on Astro + Google Sheets. We record elapsed time from application to repo URL submission. Same three scores as the interview — Criterio, Autonomy, Tech.</p>
 
-  <h2>Stage 3 — Technical interview <small>(90 min, live)</small></h2>
-  <p>Pair-coding using Claude. We discuss your take-home and explore one extension.</p>
+  <h2>Stage 3 — Technical interview <small>(75 min, live)</small></h2>
+  <p>One live conversation, three parts:</p>
+  <ul>
+    <li><strong>Culture &amp; background.</strong> CV walk-through, recent projects, how you work, mutual fit.</li>
+    <li><strong>Take-home review.</strong> Discuss your submission — decisions, trade-offs, what you'd change. We probe for <em>resulting</em> and hindsight bias on a recent decision you bring (what / why / expected / confidence %).</li>
+    <li><strong>Technical problem.</strong> A small live problem or an extension of the take-home, pair-coding with Claude.</li>
+  </ul>
 
-  <h2>Stage 4 — Criterio interview <small>(60 min, live)</small></h2>
-  <p>You bring a <strong>decision journal</strong> of 3 recent work decisions (what / why / expected outcome / confidence %). We walk through them and probe for resulting and hindsight bias.</p>
-
-  <h2>Stage 5 — Culture &amp; offer <small>(45 min)</small></h2>
-  <p>Mutual fit conversation, comp, contract, start date.</p>
+  <h2>Stage 4 — Offer &amp; negotiation <small>(30–45 min)</small></h2>
+  <p>Compensation, contract, start date.</p>
 
   <h2>What we measure</h2>
   <ul>

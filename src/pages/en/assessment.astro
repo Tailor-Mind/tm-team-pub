@@ -1,18 +1,24 @@
 ---
 import Base from '../../layouts/Base.astro';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base lang="en" title="Assessment — TailorMind">
   <h1>Assessment overview</h1>
-  <p>Three components, scored independently. We share rubrics after completion so you understand what we measured.</p>
+  <p>One assessment, two observation points. We score the same three dimensions — <strong>Criterio</strong>, <strong>Autonomy</strong>, <strong>Tech</strong> — first from your take-home repo, then again live in the technical interview. Same rubric, two signals.</p>
 
-  <h2>1. Autonomy test (take-home)</h2>
-  <p>You will receive a deliberately ambiguous spec for a small full-stack feature. <strong>Time budget: 4–6 hours</strong> in a 5-day window. We score:</p>
+  <h2>The three scores</h2>
   <ul>
-    <li>Quality of clarifying questions vs documented assumptions.</li>
-    <li>Code quality (tests, readability, structure).</li>
-    <li><strong>Premortem</strong> included in the PR description.</li>
-    <li><strong>Decision journal</strong> entry committed with the work.</li>
-    <li>Claude transcript attached (any tool: Code, web, API).</li>
+    <li><strong>Criterio</strong> — judgment under uncertainty: trade-offs you can name, how you separate decision quality from outcome quality, what you cut and why.</li>
+    <li><strong>Autonomy</strong> — driving ambiguous work to a shipped result without micromanagement. Documented assumptions count more than asked questions.</li>
+    <li><strong>Tech</strong> — full-stack engineering quality: code, structure, tests where they matter, deploys that work.</li>
+  </ul>
+
+  <h2>1. Take-home (the spec is public)</h2>
+  <p>The full task lives at <a href={`${b}/en/take-home/`}>/en/take-home</a> — read it before applying if you want. Target time <strong>under 1 hour</strong>, no hard cap. We record the elapsed time between application submission and the moment you paste your repo URL into the form (optimizing the LLM workflow matters).</p>
+  <ul>
+    <li>Stack is fixed: Astro + Google Sheets (via Apps Script Web App).</li>
+    <li>Deliverable: a public GitHub repo + live URL.</li>
+    <li>Submission: reopen your application form using the edit link from your confirmation email, paste the repo URL into the "Take-home repo URL" field.</li>
   </ul>
 
   <h2>2. Criterio question bank (multiple choice + short essay)</h2>
@@ -27,8 +33,8 @@ import Base from '../../layouts/Base.astro';
   </ul>
   <p>Expected time: <strong>45–60 minutes</strong>. Open notes. We score reasoning, not memorization.</p>
 
-  <h2>3. Criterio interview</h2>
-  <p>You bring a <strong>decision journal</strong> with 3 recent work decisions, written before the interview:</p>
+  <h2>3. Technical interview — same three scores, live</h2>
+  <p>Same Criterio / Autonomy / Tech rubric, applied to your live conversation. As part of it you bring a <strong>decision journal</strong> with 3 recent work decisions, written before the interview:</p>
   <ol>
     <li>What you decided.</li>
     <li>Why — including the alternative you rejected.</li>

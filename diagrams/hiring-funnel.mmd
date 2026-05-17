@@ -2,10 +2,10 @@ flowchart LR
   A[Application]:::stage --> B[Screening]:::stage
   B -->|pass| C[Take-home]:::stage
   B -->|reject| X1[Polite reject]:::reject
-  C --> D[Tech interview]:::stage
-  D --> E[Criterio interview]:::stage
-  E --> F[Offer]:::offer
-  E -->|no fit| X2[Polite reject]:::reject
+  C -->|pass| D[Tech interview]:::stage
+  C -->|reject| X2[Polite reject]:::reject
+  D --> E[Offer & negotiation]:::offer
+  D -->|no fit| X3[Polite reject]:::reject
 
   classDef stage fill:#dbe7ff,stroke:#2851e6,color:#0e1116;
   classDef reject fill:#f4f4f5,stroke:#a1a1aa,color:#52525b;

@@ -7,8 +7,21 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
   <p>Recorrido del candidato desde postulación hasta oferta. Diagramas renderizados desde Mermaid en el repo.</p>
 
   <h2>Embudo de contratación</h2>
-  <p><img src={`${b}/img/flows/hiring-funnel.svg`} alt="Embudo: Postulación → Screening → Take-home → Entrevista técnica → Entrevista de criterio → Oferta." /></p>
+  <p><img src={`${b}/img/flows/hiring-funnel.svg`} alt="Embudo: Postulación → Screening → Take-home (pasa/rechazo) → Entrevista técnica → Oferta y negociación." /></p>
 
   <h2>Scoring del take-home</h2>
-  <p><img src={`${b}/img/flows/scoring.svg`} alt="Scoring del take-home: Criterio + Autonomía + Técnico → pasa/itera/rechazo." /></p>
+  <p><img src={`${b}/img/flows/scoring.svg`} alt="Scoring del take-home: Criterio + Autonomía + Técnico → pasa/rechazo." /></p>
+
+  <details>
+    <summary>Fuente Mermaid</summary>
+    <pre><code class="language-mermaid">{`flowchart LR
+  A[Postulación] --> B[Screening]
+  B -->|pasa| C[Take-home]
+  B -->|rechazo| X1[Rechazo cordial]
+  C -->|pasa| D[Entrevista técnica]
+  C -->|rechazo| X2[Rechazo cordial]
+  D --> E[Oferta y negociación]
+  D -->|no fit| X3[Rechazo cordial]
+`}</code></pre>
+  </details>
 </Base>

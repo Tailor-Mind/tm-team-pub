@@ -11,6 +11,7 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
     <li>Indica tu URL de LinkedIn.</li>
     <li>Responde dos preguntas cortas de razonamiento — calibradas, no calificadas por "corrección".</li>
     <li>Elige tu idioma preferido para futuras comunicaciones.</li>
+    <li>Deja el campo "URL del repo del take-home" vacío por ahora. Al enviar recibirás un email de confirmación con un <strong>link de edición</strong> — vuelve, completa el <a href={`${b}/es/take-home/`}>take-home</a>, reabre el formulario con ese link y pega la URL del repo. Registramos el tiempo desde el primer envío hasta que pegas la URL.</li>
   </ol>
   {formUrl !== '#'
     ? <p class="not-prose">
