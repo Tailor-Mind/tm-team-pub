@@ -8,6 +8,10 @@ const other = lang === 'en' ? 'es' : 'en';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const path = Astro.url.pathname.replace(new RegExp(`^${base}`), '').replace(/^\/(en|es)/, '');
 const u = (p: string) => `${base}${p}`;
+const here = (p: string) => Astro.url.pathname.replace(/\/$/, '') === u(`/${lang}${p}`).replace(/\/$/, '');
+const navCls = (p: string) => here(p)
+  ? 'text-[color:var(--color-brand-600)] font-medium underline underline-offset-4 decoration-2'
+  : 'hover:text-[color:var(--color-brand-600)]';
 ---
 <!doctype html>
 <html lang={lang}>
@@ -24,11 +28,11 @@ const u = (p: string) => `${base}${p}`;
     <header class="border-b border-zinc-200 bg-white">
       <nav class="max-w-5xl mx-auto px-4 py-4 flex items-center gap-6 text-sm">
         <a href={u(`/${lang}/`)} class="font-bold text-[color:var(--color-brand-600)]">TailorMind</a>
-        <a href={u(`/${lang}/process/`)}>{t(lang,'nav.process')}</a>
-        <a href={u(`/${lang}/role/`)}>{t(lang,'nav.role')}</a>
-        <a href={u(`/${lang}/flow/`)}>{t(lang,'nav.flow')}</a>
-        <a href={u(`/${lang}/assessment/`)}>{t(lang,'nav.assessment')}</a>
-        <a href={u(`/${lang}/take-home/`)}>{t(lang,'nav.takehome')}</a>
+        <a href={u(`/${lang}/process/`)} class={navCls('/process/')}>{t(lang,'nav.process')}</a>
+        <a href={u(`/${lang}/role/`)} class={navCls('/role/')}>{t(lang,'nav.role')}</a>
+        <a href={u(`/${lang}/flow/`)} class={navCls('/flow/')}>{t(lang,'nav.flow')}</a>
+        <a href={u(`/${lang}/assessment/`)} class={navCls('/assessment/')}>{t(lang,'nav.assessment')}</a>
+        <a href={u(`/${lang}/take-home/`)} class={navCls('/take-home/')}>{t(lang,'nav.takehome')}</a>
         <a href={u(`/${lang}/apply/`)} class="ml-auto px-3 py-1.5 rounded bg-[color:var(--color-brand-600)] text-white">{t(lang,'nav.apply')}</a>
         <a href={u(`/${other}${path}`)} class="text-xs text-zinc-500">{other.toUpperCase()}</a>
       </nav>
