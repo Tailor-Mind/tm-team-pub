@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+# Private previews. Contents are encrypted; there is nothing here to index.
+Disallow: /tm-team-pub/lab/
 
 Sitemap: https://tailormind.github.io/sitemap-index.xml
