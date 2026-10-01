@@ -44,6 +44,7 @@ jobs:
           PUBLIC_TRACK_ENDPOINT: ${{ vars.PUBLIC_TRACK_ENDPOINT }}
           PUBLIC_APPLY_FORM_URL_EN: ${{ vars.PUBLIC_APPLY_FORM_URL_EN }}
           PUBLIC_APPLY_FORM_URL_ES: ${{ vars.PUBLIC_APPLY_FORM_URL_ES }}
+          PUBLIC_RETO_REPO_URL: ${{ vars.PUBLIC_RETO_REPO_URL }}
         run: npm run build
 
       - uses: actions/configure-pages@v5
