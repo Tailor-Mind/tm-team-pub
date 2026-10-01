@@ -1,0 +1,195 @@
+---
+/**
+ * El guiño al reto: un trozo jugable del ejercicio, en la propia web.
+ *
+ * Usa los mismos números que `src/motor.lua` del armazón — gravedad 1800,
+ * velocidad 260, impulso 620 — así que lo que se siente aquí es lo que se
+ * siente allí. No es una animación decorativa: es el ejercicio en pequeño,
+ * con los requisitos apareciendo mientras juegas y el último llegando cuando
+ * ya no da tiempo.
+ *
+ * Mide curiosidad, no habilidad: si lo jugaste, cuánto, y si te picó lo
+ * suficiente como para abrir el código. Nada de eso puntúa en el proceso.
+ */
+const { lang = 'es' } = Astro.props;
+
+const copy = lang === 'es'
+  ? {
+      titulo: 'Así se siente el reto',
+      sub: 'Muévete con las flechas, salta con espacio. Los requisitos van llegando solos — igual que en la prueba de verdad.',
+      jugar: 'Clic aquí para jugar',
+      codigo: 'Ver el código de esto',
+      aviso: 'Esto registra si lo jugaste y cuánto, para saber qué parte de la página interesa. Nada de esto puntúa en el proceso ni se asocia a tu postulación.',
+      reqs: [
+        { t: 0, id: 'R-01', txt: 'Un personaje que corre y salta. No atraviesa el suelo.' },
+        { t: 12, id: 'R-10', txt: 'Monedas: recogerlas suma, y el marcador se ve siempre.' },
+        { t: 26, id: 'R-30', txt: 'El nivel debe respetar el modo silencioso del jugador.', trampa: 'Ese término no existe. Preguntar o dejar el supuesto por escrito es la respuesta; adivinar, no.' },
+        { t: 42, id: 'R-70', txt: 'Multijugador local a pantalla partida.', trampa: 'No cabe, y llega cuando ya no da tiempo. Dejarlo fuera por escrito puntúa más que entregarlo a medias.' },
+      ],
+    }
+  : {
+      titulo: 'What the challenge feels like',
+      sub: 'Arrows to move, space to jump. Requirements arrive on their own — exactly like the real thing.',
+      jugar: 'Click here to play',
+      codigo: 'See the code behind this',
+      aviso: 'This records whether you played and for how long, so we know which part of the page lands. None of it scores in the process or is tied to your application.',
+      reqs: [
+        { t: 0, id: 'R-01', txt: 'A character that runs and jumps. It does not fall through the floor.' },
+        { t: 12, id: 'R-10', txt: 'Coins: picking them up scores, and the counter is always visible.' },
+        { t: 26, id: 'R-30', txt: 'The level must honour the player’s quiet mode.', trampa: 'That term does not exist. Asking, or writing the assumption down, is the answer. Guessing is not.' },
+        { t: 42, id: 'R-70', txt: 'Local split-screen multiplayer.', trampa: 'It does not fit, and it lands when there is no time left. Cutting it in writing beats shipping it half-done.' },
+      ],
+    };
+const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '';
+---
+
+<section class="not-prose my-10" id="tm-reto">
+  <h2 class="text-xl font-semibold mb-1">{copy.titulo}</h2>
+  <p class="text-sm text-zinc-600 mb-4">{copy.sub}</p>
+
+  <div class="grid gap-4 md:grid-cols-[1fr_320px]">
+    <div class="relative rounded-lg overflow-hidden border border-zinc-300 bg-[#0d1117]">
+      <canvas id="tm-canvas" width="640" height="300" class="w-full block" tabindex="0"></canvas>
+      <button id="tm-jugar"
+        class="absolute inset-0 grid place-items-center bg-black/55 text-white text-sm font-medium">
+        {copy.jugar}
+      </button>
+    </div>
+
+    <ol id="tm-reqs" class="text-sm space-y-2 m-0 p-0 list-none"></ol>
+  </div>
+
+  <p class="text-xs text-zinc-500 mt-3">{copy.aviso}</p>
+  {repo && <p class="text-sm mt-1"><a href={repo} id="tm-ver-codigo" target="_blank" rel="noopener">{copy.codigo} →</a></p>}
+</section>
+
+<script is:inline define:vars={{ reqs: copy.reqs, lang }}>
+(() => {
+  const canvas = document.getElementById('tm-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const lista = document.getElementById('tm-reqs');
+  const boton = document.getElementById('tm-jugar');
+  const endpoint = document.querySelector('meta[name="tm-track-endpoint"]')?.content || '';
+
+  // Un solo envío por tipo de evento: medir curiosidad no justifica un goteo
+  // de peticiones a cada salto.
+  const enviados = new Set();
+  function track(evento, extra = {}) {
+    if (!endpoint || enviados.has(evento)) return;
+    enviados.add(evento);
+    try {
+      fetch(endpoint, {
+        method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ event: evento, lang, path: location.pathname, ...extra }),
+      });
+    } catch { /* que no se note nunca en la página */ }
+  }
+
+  // Los mismos números que src/motor.lua del armazón.
+  const GRAVEDAD = 1800, VELOCIDAD = 260, IMPULSO = 620;
+  const W = canvas.width, H = canvas.height;
+  const plataformas = [
+    { x: 0, y: H - 24, w: W, h: 24 },
+    { x: 150, y: H - 110, w: 130, h: 12 },
+    { x: 360, y: H - 180, w: 150, h: 12 },
+  ];
+  const monedas = [{ x: 200, y: H - 140 }, { x: 420, y: H - 210 }, { x: 560, y: H - 60 }];
+  const j = { x: 40, y: 40, vx: 0, vy: 0, w: 20, h: 26, enSuelo: false };
+  const teclas = {};
+  let jugando = false, puntos = 0, saltos = 0, t0 = 0, reloj = 0, abiertos = 0;
+
+  const solapan = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
+
+  function paso(dt) {
+    j.vx = (teclas.ArrowLeft || teclas.a ? -VELOCIDAD : 0) + (teclas.ArrowRight || teclas.d ? VELOCIDAD : 0);
+    if ((teclas[' '] || teclas.ArrowUp || teclas.w) && j.enSuelo) { j.vy = -IMPULSO; j.enSuelo = false; saltos++; }
+    j.vy += GRAVEDAD * dt;
+
+    j.x += j.vx * dt;
+    for (const p of plataformas) if (solapan(j, p)) j.x = j.vx > 0 ? p.x - j.w : p.x + p.w;
+    j.y += j.vy * dt;
+    j.enSuelo = false;
+    for (const p of plataformas) {
+      if (!solapan(j, p)) continue;
+      if (j.vy > 0) { j.y = p.y - j.h; j.vy = 0; j.enSuelo = true; } else { j.y = p.y + p.h; j.vy = 0; }
+    }
+    j.x = Math.max(0, Math.min(W - j.w, j.x));
+    if (j.y > H + 150) { j.x = 40; j.y = 40; j.vy = 0; }
+
+    for (const m of monedas) {
+      if (!m.tomada && solapan(j, { x: m.x - 7, y: m.y - 7, w: 14, h: 14 })) { m.tomada = true; puntos++; }
+    }
+  }
+
+  function pintar() {
+    ctx.fillStyle = '#0d1117'; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = '#2b3240';
+    for (const p of plataformas) ctx.fillRect(p.x, p.y, p.w, p.h);
+    ctx.fillStyle = '#e3b341';
+    for (const m of monedas) if (!m.tomada) { ctx.beginPath(); ctx.arc(m.x, m.y, 6, 0, 7); ctx.fill(); }
+    ctx.fillStyle = '#4f9cf9'; ctx.fillRect(j.x, j.y, j.w, j.h);
+    ctx.fillStyle = '#8b98a5'; ctx.font = '13px ui-monospace, monospace';
+    ctx.fillText(`${puntos}/${monedas.length}`, 12, 22);
+    if (jugando) ctx.fillText(`${Math.floor(reloj)}s`, W - 46, 22);
+  }
+
+  function tarjeta(r) {
+    const li = document.createElement('li');
+    li.className = 'rounded border border-zinc-300 bg-white p-3';
+    li.innerHTML = `<div class="font-mono text-xs text-zinc-500">${r.id}</div>
+      <div class="mt-1">${r.txt}</div>` +
+      (r.trampa ? `<div class="mt-2 text-xs text-amber-700 border-t border-amber-200 pt-2">${r.trampa}</div>` : '');
+    li.style.opacity = '0';
+    li.style.transform = 'translateY(6px)';
+    li.style.transition = 'opacity .35s, transform .35s';
+    lista.appendChild(li);
+    requestAnimationFrame(() => { li.style.opacity = '1'; li.style.transform = 'none'; });
+  }
+
+  let anterior = 0;
+  function bucle(ahora) {
+    const dt = Math.min(0.05, (ahora - anterior) / 1000 || 0);
+    anterior = ahora;
+    if (jugando) {
+      reloj += dt;
+      paso(dt);
+      while (abiertos < reqs.length && reqs[abiertos].t <= reloj) tarjeta(reqs[abiertos++]);
+      if (puntos === monedas.length) track('reto_demo_completado', { segundos: Math.round(reloj), saltos });
+    }
+    pintar();
+    requestAnimationFrame(bucle);
+  }
+
+  function empezar() {
+    if (jugando) return;
+    jugando = true;
+    t0 = Date.now();
+    boton.remove();
+    canvas.focus();
+    track('reto_demo_jugado');
+  }
+
+  boton.addEventListener('click', empezar);
+  canvas.addEventListener('click', empezar);
+  addEventListener('keydown', (e) => {
+    teclas[e.key] = true;
+    if ([' ', 'ArrowLeft', 'ArrowRight', 'ArrowUp'].includes(e.key) && jugando) e.preventDefault();
+  });
+  addEventListener('keyup', (e) => { teclas[e.key] = false; });
+
+  // Cuánto aguantó jugando. Se manda al irse, que es cuando se sabe.
+  addEventListener('pagehide', () => {
+    if (!jugando) return;
+    enviados.delete('reto_demo_fin');
+    track('reto_demo_fin', { segundos: Math.round((Date.now() - t0) / 1000), saltos, monedas: puntos });
+  });
+
+  document.getElementById('tm-ver-codigo')?.addEventListener('click', () => track('reto_codigo_abierto'));
+  new IntersectionObserver((e) => { if (e[0].isIntersecting) track('reto_demo_visto'); }, { threshold: 0.4 })
+    .observe(canvas);
+
+  tarjeta(reqs[0]); abiertos = 1;
+  requestAnimationFrame(bucle);
+})();
+</script>

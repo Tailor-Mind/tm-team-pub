@@ -1,11 +1,14 @@
 ---
 import Base from '../../layouts/Base.astro';
+import RetoDemo from '../../components/RetoDemo.astro';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base lang="es" title="TailorMind — Talento" description="Contratamos desarrolladores senior potenciados por IA, remoto desde Perú.">
   <h1>Contratamos desarrolladores senior potenciados por IA</h1>
   <p class="lead">Remoto, basado en Perú. Te damos tu cuenta de Claude.</p>
   <p>Contratamos por <strong>criterio</strong> — la capacidad de emitir juicios acertados bajo incertidumbre — y por autonomía con herramientas de IA.</p>
+  <RetoDemo lang="es" />
+
   <p>¿Quieres ver qué construimos? Pásate por <a href="https://tailormind.io/" target="_blank" rel="noopener">tailormind.io</a>.</p>
   <ul>
     <li><a href={`${b}/es/role/`}>Sobre el rol</a></li>
