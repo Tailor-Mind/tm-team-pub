@@ -26,6 +26,11 @@ const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '#';
     <li><strong>Requirements arrive</strong> in the game's panel, one every few minutes, all of them inside the first 28. They are not in the repo, cannot be fetched early, and there is no way to ask for more.</li>
   </ol>
 
+  <h2>The plan comes first, and it is off the clock</h2>
+  <p>Opening your run does not start the clock: the first thing you get is <strong>your plan</strong>. Five decisions and one line — who writes the code, who writes the tests, what you review of what your agent returns, whether you test by hand, what you spend most of the 30 minutes on, and what you will do when something lands that does not fit.</p>
+  <p>No option is the right one. Delegating all the code and reviewing none of it is defensible if what you ship works; writing it all by hand is too, if you have the time. <strong>The clock starts when you seal</strong>, so think it through.</p>
+  <p>What we look at afterwards is not the plan: it is <strong>the distance between the plan and what happened</strong>. Nobody follows it to the letter; what separates people is whether the difference was a decision or a stumble, and whether they said so.</p>
+
   <h2>The minute-30 decision</h2>
   <p>At 30 minutes the game stops and asks one thing: <strong>does what you have already earn its keep, or do you want ten more minutes?</strong></p>
   <p>Both answers are fine and neither scores on its own. We ask for your reason in one line, and <strong>that line is part of the assessment</strong>: what we look at is whether your answer matches what is on disk. Stopping with three finished things is right; stopping with everything half-done is not. Asking for ten minutes to close something concrete is right; asking for them to start what you never started is not.</p>
@@ -45,6 +50,7 @@ const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '#';
   <h2>What you ship</h2>
   <ol>
     <li><strong>A game that runs.</strong> <code>love .</code> has to start and be playable. Test it from a clean clone before sending: "it doesn't start" is more common than you'd think, and then there is nothing to look at.</li>
+    <li><strong><code>PLAN-SELLADO.md</code></strong>, exactly as the game wrote it. Don't edit it.</li>
     <li><strong><code>SUPUESTOS.md</code></strong> — one line per decision you had to make because the requirement did not define it, and at the end, what you left out and why. This file is the document, not the appendix.</li>
     <li><strong><code>REQUISITOS-RECIBIDOS.md</code></strong>, exactly as the game wrote it. Don't edit it: it is your copy of what you drew and ours of what we grade against.</li>
     <li>Your tests, if you wrote any. <code>love . --test</code> should still be green.</li>

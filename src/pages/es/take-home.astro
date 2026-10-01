@@ -26,6 +26,11 @@ const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '#';
     <li><strong>Los requisitos van llegando</strong> al panel del juego, uno cada pocos minutos, todos dentro de los primeros 28. No están en el repo, no se pueden pedir por adelantado y no se puede pedir más.</li>
   </ol>
 
+  <h2>Primero el plan, y no cuenta tiempo</h2>
+  <p>Al abrir tu partida no arranca el reloj: lo primero es <strong>tu plan</strong>. Cinco decisiones y una línea — quién escribe el código, quién escribe las pruebas, qué revisas de lo que devuelve tu agente, si pruebas a mano, a qué dedicas más de los 30 minutos, y qué harás cuando llegue algo que no cabe.</p>
+  <p>Ninguna opción es la correcta. Delegar el código entero y no revisar nada es defendible si lo que entregas funciona; escribirlo todo a mano también, si te da tiempo. <strong>El reloj arranca cuando sellas</strong>, así que piénsalo sin prisa.</p>
+  <p>Lo que miramos después no es el plan: es <strong>la distancia entre el plan y lo que pasó</strong>. Nadie lo cumple entero; lo que distingue es si la diferencia fue una decisión o un atropello, y si la dijiste.</p>
+
   <h2>La decisión del minuto 30</h2>
   <p>A los 30 minutos el juego para y te pregunta una sola cosa: <strong>¿lo que tienes entregado ya vale, o quieres diez minutos más?</strong></p>
   <p>Las dos respuestas están bien y ninguna puntúa por sí sola. Te pedimos el motivo en una línea, y <strong>esa línea es parte de la evaluación</strong>: lo que miramos es si tu respuesta encaja con lo que hay en el disco. Parar con tres cosas terminadas es acertar; parar con todo a medias, no. Pedir diez minutos para cerrar algo concreto es acertar; pedirlos para empezar lo que no empezaste, no.</p>
@@ -45,6 +50,7 @@ const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '#';
   <h2>Qué entregas</h2>
   <ol>
     <li><strong>El juego funcionando.</strong> <code>love .</code> tiene que arrancar y jugarse. Pruébalo en limpio antes de mandarlo: que no arranque es más común de lo que parece, y entonces no hay nada que mirar.</li>
+    <li><strong><code>PLAN-SELLADO.md</code></strong>, tal como lo escribió el juego. No lo edites.</li>
     <li><strong><code>SUPUESTOS.md</code></strong> — una línea por decisión que tuviste que tomar sin que el requisito la definiera, y al final lo que dejaste fuera con su motivo. Este archivo es el documento, no el anexo.</li>
     <li><strong><code>REQUISITOS-RECIBIDOS.md</code></strong>, tal como lo escribió el juego. No lo edites: es tu copia de lo que te tocó y la nuestra de contra qué corregimos.</li>
     <li>Tus pruebas, si las escribiste. <code>love . --test</code> debería seguir en verde.</li>
