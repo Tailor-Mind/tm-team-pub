@@ -11,7 +11,7 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
     <li>Provide your LinkedIn URL.</li>
     <li>Answer two short reasoning questions — calibrated, not graded for "correctness".</li>
     <li>Choose your preferred language for further communication.</li>
-    <li>Leave the "Take-home repo URL" field blank for now. After submitting, you'll get a confirmation email with an <strong>edit link</strong> — come back, complete the <a href={`${b}/en/take-home/`}>take-home</a>, then reopen the form via that link and paste your repo URL. We record elapsed time from first submit to URL paste.</li>
+    <li><strong>Complete the take-home — it is required.</strong> Leave the "Take-home repo URL" field blank for now. After submitting, you'll get a confirmation email with an <strong>edit link</strong> — come back, complete the <a href={`${b}/en/take-home/`}>take-home</a>, then reopen the form via that link and paste your repo URL. We record elapsed time from first submit to URL paste.</li>
   </ol>
   {formUrl !== '#'
     ? <p class="not-prose">
@@ -22,8 +22,10 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
         <span class="block text-sm text-zinc-500 mt-2">Opens in a new tab (Google Forms — the CV upload step requires it).</span>
       </p>
     : <p class="not-prose p-4 bg-amber-50 border border-amber-300 rounded">Google Form URL not configured yet. Set <code>PUBLIC_APPLY_FORM_URL_EN</code>.</p>}
-  <h2>A note on timing</h2>
-  <p>The take-home is independent. You can submit it now (paste the repo URL in the form and your application moves to the take-home-submitted state) or wait until we've screened your CV and explicitly ask for it (~5 business days). Both paths are equally valid — we won't penalize either choice. If we reject on CV we won't evaluate the take-home, but we'll tell you within ~5 days so you don't keep wondering.</p>
+  <h2>The take-home is required</h2>
+  <p>No application moves to the interview without a submitted take-home. It is not optional and not a tie-breaker: it is Stage 2 of the process, scored on the same rubric as the interview.</p>
+  <p>What is up to you is the <em>when</em>: submit it now (paste the repo URL in the form and your application moves to the take-home-submitted state) or wait until we've screened your CV and explicitly ask for it (~5 business days). We won't penalize either path. If we reject on CV we won't evaluate the take-home, but we'll tell you within ~5 days so you don't keep wondering.</p>
+  <p><strong>Ship what you actually reviewed.</strong> Use any LLM you like — that is the point — but read your deliverable before publishing it. If content shows up that isn't part of the spec, we read that as no final review.</p>
 
   <p>Data handling: see <a href={`${b}/en/privacy/`}>privacy</a>.</p>
 </Base>

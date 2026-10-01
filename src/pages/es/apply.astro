@@ -11,7 +11,7 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
     <li>Indica tu URL de LinkedIn.</li>
     <li>Responde dos preguntas cortas de razonamiento — calibradas, no calificadas por "corrección".</li>
     <li>Elige tu idioma preferido para futuras comunicaciones.</li>
-    <li>Deja el campo "URL del repo del take-home" vacío por ahora. Al enviar recibirás un email de confirmación con un <strong>link de edición</strong> — vuelve, completa el <a href={`${b}/es/take-home/`}>take-home</a>, reabre el formulario con ese link y pega la URL del repo. Registramos el tiempo desde el primer envío hasta que pegas la URL.</li>
+    <li><strong>Completa el take-home — es obligatorio.</strong> Deja el campo "URL del repo del take-home" vacío por ahora. Al enviar recibirás un email de confirmación con un <strong>link de edición</strong> — vuelve, completa el <a href={`${b}/es/take-home/`}>take-home</a>, reabre el formulario con ese link y pega la URL del repo. Registramos el tiempo desde el primer envío hasta que pegas la URL.</li>
   </ol>
   {formUrl !== '#'
     ? <p class="not-prose">
@@ -22,8 +22,10 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
         <span class="block text-sm text-zinc-500 mt-2">Se abre en otra pestaña (Google Forms — la subida de CV lo requiere).</span>
       </p>
     : <p class="not-prose p-4 bg-amber-50 border border-amber-300 rounded">URL de Google Form no configurada todavía. Definir <code>PUBLIC_APPLY_FORM_URL_ES</code>.</p>}
-  <h2>Sobre el timing</h2>
-  <p>El take-home es independiente. Puedes enviarlo ahora (pega la URL del repo en el formulario y tu postulación pasa al estado take-home enviado) o esperar a que revisemos tu CV y te lo pidamos explícitamente (~5 días hábiles). Ambos caminos son igual de válidos — no penalizamos ninguno. Si rechazamos en CV no evaluamos el take-home, pero te avisamos en ~5 días para que no quedes esperando.</p>
+  <h2>El take-home es obligatorio</h2>
+  <p>Ninguna postulación avanza a entrevista sin el take-home entregado. No es un paso opcional ni un desempate: es la Etapa 2 del proceso y la evaluamos con la misma rúbrica que la entrevista.</p>
+  <p>Lo que sí es tuyo es el <em>cuándo</em>: puedes enviarlo ahora (pega la URL del repo en el formulario y tu postulación pasa al estado take-home enviado) o esperar a que revisemos tu CV y te lo pidamos explícitamente (~5 días hábiles). No penalizamos ninguno de los dos caminos. Si rechazamos en CV no evaluamos el take-home, pero te avisamos en ~5 días para que no quedes esperando.</p>
+  <p><strong>Entrega lo que revisaste tú.</strong> Usa los LLM que quieras — de eso se trata — pero lee tu entregable antes de publicarlo. Si aparece contenido que no forma parte del enunciado, lo leemos como que no hubo revisión final.</p>
 
   <p>Manejo de datos: ver <a href={`${b}/es/privacy/`}>privacidad</a>.</p>
 </Base>
