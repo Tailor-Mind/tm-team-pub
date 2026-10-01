@@ -5,6 +5,18 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base lang="en" title="Apply — TailorMind">
   <h1>Apply</h1>
+
+  <h2>From your terminal, with your agent</h2>
+  <p>This is the main path, and there is nothing to install:</p>
+  <pre class="not-prose"><code>git clone https://github.com/Tailor-Mind/tm-dev-challenge
+cd tm-dev-challenge
+claude            # or whichever assistant you use
+/tm-apply</code></pre>
+  <p>The repo ships the skill, so your agent sees it the moment it opens. It will ask for your details and for the <strong>specification you would start the challenge with</strong> — the part we actually read — and hand you your key. Keep it: without it no run opens.</p>
+  <p>Using a different assistant? Open <code>.claude/skills/tm-apply/SKILL.md</code> for it and ask it to follow that. It is a text file with a <code>curl</code> in it; nothing proprietary.</p>
+
+  <h2>Or through the form</h2>
+  <p>It costs you nothing and we confirm every application by email. But the job is directing agents, so which door you come through says something about how you work — and we note it.</p>
   <p>Submit the form below. We acknowledge every application by email.</p>
   <ol>
     <li>Upload your CV (PDF).</li>
