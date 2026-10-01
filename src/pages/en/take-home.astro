@@ -5,10 +5,10 @@ const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '#';
 ---
 <Base lang="en" title="Take-home task — TailorMind">
   <h1>Take-home task</h1>
-  <p class="lead">A platformer in Lua. Forty-five minutes, with the requirements arriving while you work.</p>
+  <p class="lead">A platformer in Lua. Thirty to forty-five minutes, with the requirements arriving while you work.</p>
 
   <h2>It does not all fit, and that is deliberate</h2>
-  <p>More will land than can be done well in 45 minutes, and some of it will contradict what you were asked earlier. Attempting everything and shipping a broken game is the worst possible outcome.</p>
+  <p>More will land than can be done well in that time, and some of it will contradict what you were asked earlier. Attempting everything and shipping a broken game is the worst possible outcome.</p>
   <p>We want the opposite: <strong>the most working software, in the least time, with the sacrifices said out loud</strong>. Three finished, playable things beat seven half-done ones.</p>
 
   <h2>Required</h2>
@@ -23,7 +23,7 @@ const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '#';
     <li><strong>Beforehand, off the clock:</strong> install <a href="https://love2d.org">LÖVE 11.4</a>, clone the harness, open it with <code>love .</code> and run its tests with <code>love . --test</code>. It ships a character that runs and jumps, and five passing tests. Take as long as you like: none of this counts.</li>
     <li><strong>Practise on the demo requirements.</strong> The repo carries three, in exactly the shape the real ones take. They do not count either.</li>
     <li><strong>Open your run</strong> with <code>love . --run YOU@EMAIL</code>. That is when the clock starts.</li>
-    <li><strong>Requirements arrive</strong> in the game's panel, one every few minutes, until minute 41. They are not in the repo, cannot be fetched early, and there is no way to ask for more.</li>
+    <li><strong>Requirements arrive</strong> in the game's panel, one every few minutes. All of them land inside the first 28, so whether you stop at 30 or at 45 you see yours in full. They are not in the repo, cannot be fetched early, and there is no way to ask for more.</li>
   </ol>
 
   <h2>Why the task is not in the repo</h2>
@@ -52,12 +52,12 @@ const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '#';
     <li><strong>What you left out, and whether you said so.</strong> Doing it all is not an option. Choosing is, and choosing well shows.</li>
     <li><strong>The assumptions.</strong> Some requirement will leave something undefined. Filling the gap in silence is never the good answer.</li>
     <li><strong>That it starts and plays.</strong> No ceremony.</li>
-    <li><strong>The code</strong>, last. If it reads and the tests pass, it is fine. We are not looking for astronaut architecture in 45 minutes.</li>
+    <li><strong>The code</strong>, last. If it reads and the tests pass, it is fine. We are not looking for astronaut architecture in half an hour.</li>
   </ol>
 
   <h2>Rules</h2>
   <ul>
-    <li>There is nobody to ask during the 45 minutes: when something is undefined, <strong>write the assumption</strong> and move on.</li>
+    <li>There is nobody to ask while the clock runs: when something is undefined, <strong>write the assumption</strong> and move on.</li>
     <li>Use any AI you want. <strong>Using it costs you nothing; shipping it unread does.</strong> If the model gave you something you did not verify, say so in <code>SUPUESTOS.md</code> — that costs you nothing either.</li>
     <li>Commits carry timestamps. No need to police yourself: it shows on its own.</li>
   </ul>

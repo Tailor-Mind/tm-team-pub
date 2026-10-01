@@ -19,7 +19,7 @@ const copy = lang === 'es'
       sub: 'Muévete con las flechas, salta con espacio. Los requisitos van llegando solos — igual que en la prueba de verdad.',
       jugar: 'Clic aquí para jugar',
       codigo: 'Ver el código de esto',
-      aviso: 'Esto registra si lo jugaste y cuánto, para saber qué parte de la página interesa. Nada de esto puntúa en el proceso ni se asocia a tu postulación.',
+      aviso: 'Qué medimos aquí',
       reqs: [
         { t: 0, id: 'R-01', txt: 'Un personaje que corre y salta. No atraviesa el suelo.' },
         { t: 12, id: 'R-10', txt: 'Monedas: recogerlas suma, y el marcador se ve siempre.' },
@@ -32,7 +32,7 @@ const copy = lang === 'es'
       sub: 'Arrows to move, space to jump. Requirements arrive on their own — exactly like the real thing.',
       jugar: 'Click here to play',
       codigo: 'See the code behind this',
-      aviso: 'This records whether you played and for how long, so we know which part of the page lands. None of it scores in the process or is tied to your application.',
+      aviso: 'What we measure here',
       reqs: [
         { t: 0, id: 'R-01', txt: 'A character that runs and jumps. It does not fall through the floor.' },
         { t: 12, id: 'R-10', txt: 'Coins: picking them up scores, and the counter is always visible.' },
@@ -59,8 +59,10 @@ const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '';
     <ol id="tm-reqs" class="text-sm space-y-2 m-0 p-0 list-none"></ol>
   </div>
 
-  <p class="text-xs text-zinc-500 mt-3">{copy.aviso}</p>
-  {repo && <p class="text-sm mt-1"><a href={repo} id="tm-ver-codigo" target="_blank" rel="noopener">{copy.codigo} →</a></p>}
+  <p class="text-sm mt-3 flex flex-wrap gap-x-4 gap-y-1">
+    {repo && <a href={repo} id="tm-ver-codigo" target="_blank" rel="noopener">{copy.codigo} →</a>}
+    <a href={`${Astro.url.pathname.replace(/\/[^/]*$/, '')}/privacy/`} class="text-xs text-zinc-500 self-center">{copy.aviso}</a>
+  </p>
 </section>
 
 <script is:inline define:vars={{ reqs: copy.reqs, lang }}>
