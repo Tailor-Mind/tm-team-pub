@@ -72,20 +72,14 @@ const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '';
   const ctx = canvas.getContext('2d');
   const lista = document.getElementById('tm-reqs');
   const boton = document.getElementById('tm-jugar');
-  const endpoint = document.querySelector('meta[name="tm-track-endpoint"]')?.content || '';
-
   // Un solo envío por tipo de evento: medir curiosidad no justifica un goteo
-  // de peticiones a cada salto.
+  // de peticiones a cada salto. El envío en sí lo hace el layout, que es quien
+  // sabe de qué campaña llegó esta visita.
   const enviados = new Set();
   function track(evento, extra = {}) {
-    if (!endpoint || enviados.has(evento)) return;
+    if (enviados.has(evento)) return;
     enviados.add(evento);
-    try {
-      fetch(endpoint, {
-        method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ event: evento, lang, path: location.pathname, ...extra }),
-      });
-    } catch { /* que no se note nunca en la página */ }
+    window.tmTrack?.(evento, { lang, ...extra });
   }
 
   // Los mismos números que src/motor.lua del armazón.

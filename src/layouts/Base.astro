@@ -23,6 +23,55 @@ const navCls = (p: string) => here(p)
     <meta name="tm-track-endpoint" content={import.meta.env.PUBLIC_TRACK_ENDPOINT ?? ''} />
     <link rel="alternate" hreflang={other} href={u(`/${other}${path}`)} />
     <link rel="alternate" hreflang="x-default" href={u(`/en${path}`)} />
+    <!--
+      El rastro de la convocatoria.
+
+      Un solo sitio donde se arma el evento, para que la campana viaje con el:
+      los utm llegan en la URL del anuncio, se guardan en la sesion y se pegan
+      a TODO lo que pase despues. Sin eso sabriamos cuanta gente llego, pero no
+      de donde vino la que ademas postulo, que es la unica cifra que decide
+      donde publicar la proxima vez.
+
+      Una visita por sesion, no por pagina: medir interes no justifica un goteo
+      de peticiones navegando.
+    -->
+    <script is:inline>
+      (() => {
+        const endpoint = document.querySelector('meta[name="tm-track-endpoint"]')?.content || '';
+        const CAMPOS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+        const leer = (k) => { try { return sessionStorage.getItem(k); } catch { return null; } };
+        const guardar = (k, v) => { try { sessionStorage.setItem(k, v); } catch {} };
+
+        const q = new URLSearchParams(location.search);
+        const deLaUrl = {};
+        CAMPOS.forEach((k) => { const v = q.get(k); if (v) deLaUrl[k] = String(v).slice(0, 80); });
+
+        let utm = null;
+        if (Object.keys(deLaUrl).length) {
+          utm = deLaUrl;
+          guardar('tm_utm', JSON.stringify(utm));
+        } else {
+          try { utm = JSON.parse(leer('tm_utm') || 'null'); } catch { utm = null; }
+        }
+
+        window.tmTrack = (evento, extra = {}) => {
+          if (!endpoint) return;
+          try {
+            fetch(endpoint, {
+              method: 'POST', mode: 'no-cors',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify({
+                event: evento, lang: document.documentElement.lang,
+                path: location.pathname, ref: document.referrer || null,
+                ts: new Date().toISOString(), ...(utm || {}), ...extra,
+              }),
+            });
+          } catch { /* que no se note nunca en la pagina */ }
+        };
+
+        if (!leer('tm_visita')) { guardar('tm_visita', '1'); window.tmTrack('visita'); }
+      })();
+    </script>
   </head>
   <body class="min-h-screen flex flex-col">
     <header class="border-b border-zinc-200 bg-white">

@@ -25,24 +25,12 @@ const { lang } = Astro.props;
 <script is:inline define:vars={{ lang }}>
   const form = document.getElementById('comp-form');
   const out = document.getElementById('comp-out');
-  const endpoint = document.querySelector('meta[name="tm-track-endpoint"]')?.content || '';
-  form?.addEventListener('submit', async (e) => {
+  form?.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = new FormData(form).get('email');
     out.classList.remove('hidden');
-    if (endpoint) {
-      try {
-        await fetch(endpoint, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({
-            event: 'comp_reveal', email, lang,
-            path: location.pathname, ts: new Date().toISOString(),
-            ref: document.referrer || null,
-          }),
-        });
-      } catch {}
-    }
+    // El evento lo arma el layout: asi este correo queda pegado a la campana
+    // que lo trajo, en vez de ser un correo suelto sin procedencia.
+    window.tmTrack?.('comp_reveal', { email, lang });
   });
 </script>
