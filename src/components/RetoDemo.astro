@@ -18,6 +18,7 @@ const copy = lang === 'es'
       titulo: 'Así se siente el reto',
       sub: 'Muévete con las flechas, salta con espacio. Los requisitos van llegando solos — igual que en la prueba de verdad.',
       jugar: 'Clic aquí para jugar',
+      gira: 'Gíralo: en horizontal se juega mucho mejor.',
       codigo: 'Ver el código de esto',
       aviso: 'Qué medimos aquí',
       reqs: [
@@ -31,6 +32,7 @@ const copy = lang === 'es'
       titulo: 'What the challenge feels like',
       sub: 'Arrows to move, space to jump. Requirements arrive on their own — exactly like the real thing.',
       jugar: 'Click here to play',
+      gira: 'Turn your phone: landscape plays much better.',
       codigo: 'See the code behind this',
       aviso: 'What we measure here',
       reqs: [
@@ -54,7 +56,25 @@ const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '';
         class="absolute inset-0 grid place-items-center bg-black/55 text-white text-sm font-medium">
         {copy.jugar}
       </button>
+
+      {/*
+        Mandos para el dedo. La demo se jugaba solo con flechas y espacio, así
+        que en un teléfono se veía pero no se podía tocar — y la mitad del
+        tráfico de un post de LinkedIn llega desde el móvil.
+
+        Salen solo donde no hay ratón (`@media (pointer: coarse)`), para no
+        ensuciar la pantalla de quien sí tiene teclado.
+      */}
+      <div id="tm-mandos" class="absolute inset-x-0 bottom-0 justify-between p-3 gap-3 hidden">
+        <div class="flex gap-3">
+          <button type="button" data-tecla="ArrowLeft" aria-label="Izquierda">‹</button>
+          <button type="button" data-tecla="ArrowRight" aria-label="Derecha">›</button>
+        </div>
+        <button type="button" data-tecla=" " aria-label="Saltar" class="saltar">Saltar</button>
+      </div>
     </div>
+
+    <p id="tm-gira" class="text-xs text-zinc-500 m-0 -mt-2">{copy.gira}</p>
 
     <ol id="tm-reqs" class="text-sm space-y-2 m-0 p-0 list-none"></ol>
   </div>
@@ -174,6 +194,31 @@ const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '';
   });
   addEventListener('keyup', (e) => { teclas[e.key] = false; });
 
+  // Los mandos táctiles escriben en el mismo `teclas` que el teclado: así el
+  // bucle del juego no se entera de por dónde vino la orden y no hay dos
+  // caminos que mantener.
+  //
+  // `pointerdown`/`pointerup` y no `click`: un click llega al soltar, y para
+  // correr hace falta saber que el dedo SIGUE puesto. `setPointerCapture` evita
+  // que el personaje se quede corriendo si el dedo se desliza fuera del botón.
+  const mandos = document.getElementById('tm-mandos');
+  mandos?.querySelectorAll('button[data-tecla]').forEach((b) => {
+    const tecla = b.dataset.tecla;
+    const pulsar = (e) => {
+      e.preventDefault();
+      if (!jugando) empezar();
+      teclas[tecla] = true;
+      try { b.setPointerCapture(e.pointerId); } catch {}
+    };
+    const soltar = () => { teclas[tecla] = false; };
+    b.addEventListener('pointerdown', pulsar);
+    b.addEventListener('pointerup', soltar);
+    b.addEventListener('pointercancel', soltar);
+    b.addEventListener('lostpointercapture', soltar);
+    // Sin esto, mantener pulsado abre el menú de copiar del móvil encima del juego.
+    b.addEventListener('contextmenu', (e) => e.preventDefault());
+  });
+
   // Cuánto aguantó jugando. Se manda al irse, que es cuando se sabe.
   addEventListener('pagehide', () => {
     if (!jugando) return;
@@ -189,3 +234,40 @@ const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '';
   requestAnimationFrame(bucle);
 })();
 </script>
+
+<style is:global>
+  /* Los mandos aparecen solo donde el puntero es un dedo. En un portátil con
+     pantalla táctil manda el ratón, así que no estorban. */
+  @media (pointer: coarse) {
+    #tm-mandos { display: flex !important; }
+  }
+  #tm-mandos button {
+    min-width: 56px; min-height: 56px;
+    display: grid; place-items: center;
+    border-radius: 10px; border: 1px solid rgba(255, 255, 255, .25);
+    background: rgba(0, 0, 0, .45); color: #fff;
+    font: 600 26px/1 system-ui, sans-serif;
+    /* El navegador no debe interpretar el gesto: sin esto, arrastrar para
+       correr hace scroll de la página y el juego se queda quieto. */
+    touch-action: none;
+    -webkit-user-select: none; user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  #tm-mandos button.saltar { font-size: 15px; padding: 0 18px; }
+  #tm-mandos button:active { background: rgba(79, 156, 249, .55); }
+
+  /* El lienzo mide 640 de ancho de atributo y así se quedaba: dentro de un
+     móvil de 390 hacía que la página entera scrollease en horizontal. Se
+     fuerza aquí y no se confía en la clase utilitaria, que es lo que falló. */
+  #tm-canvas { width: 100%; height: auto; display: block; }
+
+  /* El lienzo tampoco intercepta gestos: tocarlo para jugar no debe mover la página. */
+  @media (pointer: coarse) { #tm-canvas { touch-action: none; } }
+
+  /* En vertical el juego cabe, pero queda del tamaño de un sello. Se dice, no
+     se impone: quien quiera jugar así puede, y el aviso se va al girar. */
+  #tm-gira { display: none; }
+  @media (pointer: coarse) and (orientation: portrait) {
+    #tm-gira { display: block; }
+  }
+</style>
