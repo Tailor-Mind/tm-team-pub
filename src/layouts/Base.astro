@@ -73,9 +73,28 @@ const navCls = (p: string) => here(p)
       })();
     </script>
   </head>
+  <style is:global>
+    /*
+      El código no empuja la página.
+
+      Un comando largo —el `curl` de postular, por ejemplo— medía 517px en una
+      pantalla de 390 y hacía scrollear la web entera en horizontal. Ahora el
+      bloque scrollea por dentro, que es lo que tiene que moverse, y el código
+      suelto parte por donde haga falta antes que desbordar.
+    */
+    pre { overflow-x: auto; max-width: 100%; }
+    :not(pre) > code { overflow-wrap: anywhere; }
+  </style>
   <body class="min-h-screen flex flex-col">
     <header class="border-b border-zinc-200 bg-white">
-      <nav class="max-w-5xl mx-auto px-4 py-4 flex items-center gap-6 text-sm">
+      <!--
+        Envuelve, y por eso existe este comentario: con siete enlaces en una
+        sola fila la cabecera medía 543px en una pantalla de 390, así que TODA
+        la web scrolleaba en horizontal y se veía corrida desde el primer
+        momento. En móvil pasa a dos líneas; a partir de `sm` cabe en una y se
+        ve igual que antes.
+      -->
+      <nav class="max-w-5xl mx-auto px-4 py-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
         <a href={u(`/${lang}/`)} class="font-bold text-[color:var(--color-brand-600)]">TailorMind</a>
         <a href={u(`/${lang}/process/`)} class={navCls('/process/')}>{t(lang,'nav.process')}</a>
         <a href={u(`/${lang}/role/`)} class={navCls('/role/')}>{t(lang,'nav.role')}</a>

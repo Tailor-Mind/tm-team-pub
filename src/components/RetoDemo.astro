@@ -19,6 +19,7 @@ const copy = lang === 'es'
       sub: 'Muévete con las flechas, salta con espacio. Los requisitos van llegando solos — igual que en la prueba de verdad.',
       jugar: 'Clic aquí para jugar',
       gira: 'Gíralo: en horizontal se juega mucho mejor.',
+      tactil: 'Muévete con ‹ ›, salta con el botón de la derecha.',
       codigo: 'Ver el código de esto',
       aviso: 'Qué medimos aquí',
       reqs: [
@@ -33,6 +34,7 @@ const copy = lang === 'es'
       sub: 'Arrows to move, space to jump. Requirements arrive on their own — exactly like the real thing.',
       jugar: 'Click here to play',
       gira: 'Turn your phone: landscape plays much better.',
+      tactil: 'Move with ‹ ›, jump with the button on the right.',
       codigo: 'See the code behind this',
       aviso: 'What we measure here',
       reqs: [
@@ -74,6 +76,7 @@ const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '';
       </div>
     </div>
 
+    <p id="tm-tactil" class="text-xs text-zinc-500 m-0 -mt-2">{copy.tactil}</p>
     <p id="tm-gira" class="text-xs text-zinc-500 m-0 -mt-2">{copy.gira}</p>
 
     <ol id="tm-reqs" class="text-sm space-y-2 m-0 p-0 list-none"></ol>
@@ -238,11 +241,26 @@ const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '';
 <style is:global>
   /* Los mandos aparecen solo donde el puntero es un dedo. En un portátil con
      pantalla táctil manda el ratón, así que no estorban. */
+  /*
+    Los mandos van DEBAJO del lienzo, no encima.
+
+    Flotando sobre el juego tapaban el suelo y, en un móvil donde el lienzo mide
+    167px de alto, se comían la mitad del área jugable: quedaba una franja de
+    botones gigantes sobre el personaje. Abajo, en su propia barra, el juego se
+    ve entero y el pulgar los tiene igual de cerca.
+  */
   @media (pointer: coarse) {
-    #tm-mandos { display: flex !important; }
+    #tm-mandos {
+      display: flex !important;
+      position: static;
+      border-top: 1px solid #222a35;
+      background: #0d1117;
+      padding: 8px 10px;
+      align-items: center;
+    }
   }
   #tm-mandos button {
-    min-width: 56px; min-height: 56px;
+    min-width: 54px; min-height: 44px;
     display: grid; place-items: center;
     border-radius: 10px; border: 1px solid rgba(255, 255, 255, .25);
     background: rgba(0, 0, 0, .45); color: #fff;
@@ -266,6 +284,11 @@ const repo = import.meta.env.PUBLIC_RETO_REPO_URL || '';
 
   /* En vertical el juego cabe, pero queda del tamaño de un sello. Se dice, no
      se impone: quien quiera jugar así puede, y el aviso se va al girar. */
+  /* El subtitulo habla de flechas y espacio, que en un telefono no existen.
+     Esta linea lo traduce al dedo, y solo sale donde hace falta. */
+  #tm-tactil { display: none; }
+  @media (pointer: coarse) { #tm-tactil { display: block; } }
+
   #tm-gira { display: none; }
   @media (pointer: coarse) and (orientation: portrait) {
     #tm-gira { display: block; }
