@@ -28,16 +28,19 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Install mermaid-cli + Chrome
-        run: |
-          npm i -D @mermaid-js/mermaid-cli
-          npx puppeteer browsers install chrome
-
-      - name: Render Mermaid diagrams to SVG
-        run: |
-          mkdir -p public/img/flows
-          npx mmdc -p .puppeteer.json -i diagrams/hiring-funnel.mmd -o public/img/flows/hiring-funnel.svg -b transparent
-          npx mmdc -p .puppeteer.json -i diagrams/scoring.mmd       -o public/img/flows/scoring.svg       -b transparent
+      # Los diagramas ya no se generan aqui.
+      #
+      # Instalar mermaid-cli y descargar Chrome en cada despliegue costaba
+      # entre uno y QUINCE minutos —un despliegue se quedo 14m41s en ese paso
+      # sin llegar a construir— para regenerar dos SVG identicos. Los .mmd
+      # cambian una vez cada varios meses, asi que los SVG viven en
+      # public/img/flows/ y se vuelven a generar a mano cuando toque:
+      #
+      #   npx mmdc -p .puppeteer.json -i diagrams/<x>.mmd \
+      #            -o public/img/flows/<x>.svg -b transparent
+      #
+      # Publicar un cambio de texto no deberia depender de bajarse un
+      # navegador.
 
       - name: Build
         env:
