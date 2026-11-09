@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import CompReveal from '../../components/CompReveal.astro';
+const formUrl = import.meta.env.PUBLIC_PRODUCT_FORM_URL ?? '#';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base lang="en" title="Product & Quality Analyst (AI-empowered) — TailorMind" description="Remote from Peru, 40 hours a week. No coding required.">
+  <h1>Product &amp; Quality Analyst (AI-empowered)</h1>
+  <p class="lead">Remote · <strong>Peru only</strong> · 40 hours a week · No coding required</p>
+  <p class="not-prose p-4 rounded border border-zinc-200 bg-zinc-50 text-[15px]">The application and the test are in Spanish. <a href={`${b}/es/product/`}>Read this page in Spanish</a>.</p>
+
+  <p>At TailorMind, AI agents write much of the code. The hard part is no longer building: it is making sure we build the right thing, and that what we deliver does what we promised. That is this role.</p>
+
+  <h2>You will</h2>
+  <ul>
+    <li><strong>Review before building.</strong> Read the spec and look for what is missing, what contradicts itself and what nobody defined.</li>
+    <li><strong>Test the idea.</strong> Check that the prototype covers what will be built, so we do not spend weeks on the wrong software.</li>
+    <li><strong>Verify and validate.</strong> Check that each delivery does what was asked and serves whoever will use it. Have the final functional say on what we ship.</li>
+    <li><strong>Report so it gets fixed.</strong> Steps, what you expected, what happened and how serious it is.</li>
+    <li><strong>Use AI to the full.</strong> To cover more in less time, and to check what it tells you, because sometimes it is wrong.</li>
+    <li><strong>Learn to build.</strong> With coding agents, building prototypes and your own tools is more and more accessible, and you will have room for it here.</li>
+  </ul>
+
+  <h2>We look for</h2>
+  <ul>
+    <li>Noticing what others miss, and explaining it clearly in writing.</li>
+    <li>Real curiosity about AI: you already use it for more than one-off questions.</li>
+    <li>Judgment to tell the serious from the annoying, and to say "this does not ship" with arguments.</li>
+    <li>A wish to build products, or to lead how they get built.</li>
+  </ul>
+  <p><strong>Not required:</strong> coding experience, a CS degree or prior work as a tester. Support, operations, business, manual QA or having built something yourself can help. The test is what counts.</p>
+  <p><strong>The technical side is not yours.</strong> Code, architecture, security and performance stay with engineering.</p>
+  <p><strong>This is an entry-level role.</strong> You start verifying alongside an engineer and gain autonomy over the first weeks. The usual applies too: we are a small startup, with the real risk that comes with it.</p>
+
+  <h2>What we offer</h2>
+  <ul>
+    <li>Remote, async-first, 40 hours a week.</li>
+    <li><strong>The AI tool, paid by the company.</strong> With client material, only the tools each contract allows.</li>
+    <li>Contract under Peruvian law: <em>planilla</em> or <em>recibo por honorarios (RxH)</em>, to be defined.</li>
+  </ul>
+  <CompReveal lang="en" role="product" />
+  <p class="text-sm text-zinc-500">Revealing logs your email in our pipeline. We only use it for this process. See <a href={`${b}/en/privacy/`}>privacy</a>.</p>
+
+  <h2>The process</h2>
+  <ol>
+    <li><strong>Application, about 10 minutes.</strong> Your details, and finding 3 problems in a short spec. No CV needed.</li>
+    <li><strong>"La entrega", 30 minutes, whenever you like.</strong> A spec, a prototype and a "version 1" the team says is done. You decide whether it ships, rank what you found and record a 2-minute video reproducing your most serious finding in the app.</li>
+    <li><strong>Interview, 40 minutes, camera on.</strong> The first 10 without AI. Then you test, with your AI, a feature you have not seen.</li>
+    <li><strong>Final conversation with the other partner.</strong> Terms and the uncomfortable questions. Written offer.</li>
+  </ol>
+  <p>Use any AI you want and say so. Deciding well (what blocks release, in what order, and what is not a bug) counts more than finding many bugs.</p>
+
+  <h2 id="postular">Apply</h2>
+  {formUrl !== '#'
+    ? <p class="not-prose"><a href={formUrl} target="_blank" rel="noopener" class="inline-block px-5 py-3 rounded bg-[color:var(--color-brand-600)] text-white font-medium">Open the application form (Spanish) ↗</a></p>
+    : <p class="not-prose p-4 bg-amber-50 border border-amber-300 rounded">Form not configured yet. Set <code>PUBLIC_PRODUCT_FORM_URL</code>.</p>}
+</Base>

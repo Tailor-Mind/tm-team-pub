@@ -4,21 +4,26 @@ import RetoDemo from '../../components/RetoDemo.astro';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base lang="es" title="TailorMind — Talento" description="Contratamos desarrolladores senior potenciados por IA, remoto desde Perú.">
-  <h1>Contratamos desarrolladores senior potenciados por IA</h1>
-  <p class="lead">Remoto, desde Perú. Te pagamos la herramienta de agentes que uses.</p>
-  <p>Contratamos por <strong>criterio</strong> — la capacidad de emitir juicios acertados bajo incertidumbre — y por autonomía con herramientas de IA.</p>
-    <div class="not-prose my-6 p-4 rounded border border-amber-300 bg-amber-50 text-[15px] leading-relaxed">
-    <p class="font-semibold m-0">Convocatoria abierta hasta el lunes 26 de octubre de 2026, 11:59 PM</p>
-    <p class="m-0 mt-1">Una semana. Después cerramos postulaciones, revisamos todo lo que llegó y respondemos a cada persona.</p>
-    <p class="m-0 mt-1"><strong>Esta tanda es solo para residentes en Perú.</strong> El contrato es bajo ley peruana y esta vez no hacemos excepciones: si vives fuera, no postules todavía — te haríamos perder el tiempo.</p>
-    <p class="m-0 mt-2 text-amber-900">Es la primera tanda con el reto nuevo: los requisitos y los tiempos van a cambiar con lo que aprendamos de estas entregas. Lo decimos por delante, y si algo te parece mal medido, dilo en tu entrega — cuenta a favor.</p>
+  <h1>Contratamos en TailorMind</h1>
+  <p class="lead">Remoto, desde Perú. Te pagamos la herramienta de IA que uses.</p>
+  <p>Contratamos por <strong>criterio</strong>, la capacidad de emitir juicios acertados bajo incertidumbre, y por autonomía con herramientas de IA.</p>
+  <div class="not-prose my-6 grid gap-4 sm:grid-cols-2 text-[15px] leading-relaxed">
+    <a href={`${b}/es/product/`} class="block p-4 rounded border border-emerald-300 bg-emerald-50 no-underline text-zinc-900">
+      <p class="font-semibold m-0">Analista de Producto y Calidad · <span class="text-emerald-800">abierta</span></p>
+      <p class="m-0 mt-1">No necesitas saber programar. 40 horas semanales, solo Perú. Postulación de 10 minutos.</p>
+    </a>
+    <a href={`${b}/es/role/`} class="block p-4 rounded border border-zinc-200 bg-zinc-50 no-underline text-zinc-900">
+      <p class="font-semibold m-0">Desarrollador Full-stack Senior · <span class="text-zinc-600">cerrada</span></p>
+      <p class="m-0 mt-1">La convocatoria cerró el 26 de octubre. Estamos revisando y respondemos a cada persona.</p>
+    </a>
   </div>
 
   <RetoDemo lang="es" />
 
   <p>¿Quieres ver qué construimos? Pásate por <a href="https://tailormind.io/" target="_blank" rel="noopener">tailormind.io</a>.</p>
   <ul>
-    <li><a href={`${b}/es/role/`}>Sobre el rol</a></li>
+    <li><a href={`${b}/es/product/`}>Analista de Producto y Calidad</a></li>
+    <li><a href={`${b}/es/role/`}>Desarrollador Full-stack Senior</a></li>
     <li><a href={`${b}/es/process/`}>Cómo funciona nuestro proceso</a></li>
     <li><a href={`${b}/es/flow/`}>Diagrama del proceso</a></li>
     <li><a href={`${b}/es/assessment/`}>Sobre la evaluación</a></li>
