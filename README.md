@@ -37,7 +37,7 @@ All `PUBLIC_*` are inlined at build time. Set as **repository variables** in Git
 | `PUBLIC_TRACK_ENDPOINT` | Apps Script Web App URL (from `private-kit`) |
 | `PUBLIC_APPLY_FORM_URL_EN` | Google Form public URL (English) |
 | `PUBLIC_APPLY_FORM_URL_ES` | Google Form public URL (Spanish) |
-| `PUBLIC_PRODUCT_FORM_URL` | Google Form for the Product & Quality Analyst role (created with `private-kit/roles/analista-producto-calidad/formulario/crear-formulario.gs`) |
+| `PUBLIC_PRODUCT_FORM_URL` | Google Form for the Product & Quality Analyst role (created by `crearFormularioProducto` in the bound Apps Script of the `pipeline` sheet; answers land in its `Postulaciones Producto` tab) |
 
 ## Deploy
 
