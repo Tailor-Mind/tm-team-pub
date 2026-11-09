@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import CompReveal from '../../components/CompReveal.astro';
+const formUrl = import.meta.env.PUBLIC_PRODUCT_FORM_URL ?? '#';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base lang="es" title="Analista de Producto y Calidad (potenciado con IA) — TailorMind" description="Remoto desde Perú, 40 horas semanales. No necesitas saber programar.">
+  <h1>Analista de Producto y Calidad (potenciado con IA)</h1>
+  <p class="lead">Remoto · <strong>solo Perú</strong> · 40 horas semanales · No necesitas saber programar</p>
+
+  <p>En TailorMind los agentes de IA escriben gran parte del código. Lo difícil ya no es construir: es asegurarse de que construimos lo correcto, y de que lo que entregamos hace lo que prometimos. Ese es este rol.</p>
+
+  <h2>Vas a</h2>
+  <ul>
+    <li><strong>Revisar antes de construir.</strong> Leer la especificación y buscar lo que falta, lo que se contradice y lo que nadie definió.</li>
+    <li><strong>Probar la idea.</strong> Comprobar que el prototipo contempla lo que se construirá, para no gastar semanas en el software equivocado.</li>
+    <li><strong>Verificar y validar.</strong> Comprobar que cada entrega cumple lo pedido y que le sirve a quien la va a usar. Dar la última palabra funcional sobre lo que entregamos.</li>
+    <li><strong>Reportar para que se arregle.</strong> Pasos, qué esperabas, qué pasó y qué tan grave es.</li>
+    <li><strong>Usar la IA a fondo.</strong> Para cubrir más en menos tiempo, y verificar lo que te dice, porque a veces se equivoca.</li>
+    <li><strong>Aprender a construir.</strong> Con agentes de código, armar prototipos y herramientas propias es cada vez más accesible, y aquí tendrás espacio para hacerlo.</li>
+  </ul>
+
+  <h2>Buscamos</h2>
+  <ul>
+    <li>Que notes lo que a otros se les pasa, y que lo expliques por escrito con claridad.</li>
+    <li>Curiosidad real por la IA: que ya la uses para algo más que preguntas sueltas.</li>
+    <li>Criterio para distinguir lo grave de lo molesto, y para decir "esto no sale" con argumentos.</li>
+    <li>Ganas de construir o de liderar la construcción de productos.</li>
+  </ul>
+  <p><strong>No hace falta</strong> experiencia programando, título en sistemas ni experiencia previa como tester. Puede ayudarte venir de soporte, operaciones, negocio, QA manual o de haber creado algo por tu cuenta. Lo que cuenta es la prueba.</p>
+  <p><strong>Lo técnico no es tuyo.</strong> Código, arquitectura, seguridad y rendimiento siguen con ingeniería.</p>
+  <p><strong>Es un puesto de entrada.</strong> Empiezas verificando junto a un ingeniero y ganas autonomía en las primeras semanas. También aplica lo de siempre: somos una startup pequeña, con el riesgo real que eso implica.</p>
+
+  <h2>Lo que ofrecemos</h2>
+  <ul>
+    <li>Remoto, async primero, 40 horas semanales.</li>
+    <li><strong>La herramienta de IA, pagada por la empresa.</strong> Con material de clientes solo se usan las herramientas que cada contrato autoriza.</li>
+    <li>Contrato bajo ley peruana: <em>planilla</em> o <em>recibo por honorarios (RxH)</em>, a definir.</li>
+  </ul>
+  <CompReveal lang="es" role="product" />
+  <p class="text-sm text-zinc-500">Revelar registra tu email en nuestro pipeline. Solo lo usamos para este proceso. Ver <a href={`${b}/es/privacy/`}>privacidad</a>.</p>
+
+  <h2>El proceso</h2>
+  <p>Unas dos semanas. No pedimos CV y no hay entrevista previa.</p>
+  <ol>
+    <li><strong>Postulación, unos 10 minutos.</strong> Tus datos y encontrar 3 problemas en un párrafo de especificación. Es el primer filtro.</li>
+    <li><strong>"La entrega", 30 minutos, cuando quieras.</strong> Recibes una especificación, un prototipo y la "versión 1" de una aplicación ficticia que el equipo declara terminada. Decides si se publica, ordenas lo que encontraste y grabas un video de 2 minutos reproduciendo en la aplicación tu hallazgo más grave. Todo en el navegador, sin instalar nada. Cada persona recibe una variante distinta.</li>
+    <li><strong>Entrevista, 40 minutos, con cámara.</strong> Los primeros 10, sin IA: reproduces un hallazgo y defiendes por qué es el más grave. Después pruebas, con tu IA y compartiendo pantalla, una función que no has visto.</li>
+    <li><strong>Conversación final con el otro socio.</strong> Condiciones y las preguntas incómodas. La oferta va por escrito.</li>
+  </ol>
+  <p><strong>Usa la IA que quieras y dilo.</strong> Usarla no resta; presentar lo que te dio sin verificarlo, sí. Encontrar muchos fallos cuenta menos que decidir bien: cuál impide publicar, en qué orden van y cuáles no son fallos. Si tu entrega incluye contenido que no forma parte del enunciado, lo leemos como que no hubo revisión final.</p>
+
+  <h2 id="postular">Postular</h2>
+  <p class="not-prose p-4 rounded border border-amber-300 bg-amber-50 text-[15px] leading-relaxed"><strong>Solo Perú.</strong> El contrato es bajo ley peruana y no estamos contratando fuera. Si vives en otro país, preferimos decírtelo ahora.</p>
+  {formUrl !== '#'
+    ? <p class="not-prose">
+        <a href={formUrl} target="_blank" rel="noopener"
+           class="inline-block px-5 py-3 rounded bg-[color:var(--color-brand-600)] text-white font-medium">
+          Abrir formulario de postulación ↗
+        </a>
+        <span class="block text-sm text-zinc-500 mt-2">Se abre en otra pestaña (Google Forms).</span>
+      </p>
+    : <p class="not-prose p-4 bg-amber-50 border border-amber-300 rounded">Formulario no configurado todavía. Definir <code>PUBLIC_PRODUCT_FORM_URL</code>.</p>}
+  <p>Manejo de datos: ver <a href={`${b}/es/privacy/`}>privacidad</a>.</p>
+</Base>

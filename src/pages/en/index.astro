@@ -4,21 +4,26 @@ import RetoDemo from '../../components/RetoDemo.astro';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base lang="en" title="TailorMind — Talent" description="Hiring senior AI-empowered developers, remote from Peru.">
-  <h1>Hiring senior AI-empowered developers</h1>
-  <p class="lead">Remote, from Peru. We pay for the agent tooling you use.</p>
-  <p>We hire for <strong>criterio</strong> — the capacity to make sound judgments under uncertainty — and for autonomy with AI tooling.</p>
-    <div class="not-prose my-6 p-4 rounded border border-amber-300 bg-amber-50 text-[15px] leading-relaxed">
-    <p class="font-semibold m-0">Applications open until Monday 26 October 2026, 11:59 PM (Lima)</p>
-    <p class="m-0 mt-1">One week. Then we close, review everything that came in, and reply to every person.</p>
-    <p class="m-0 mt-1"><strong>This round is for people living in Peru only.</strong> The contract is under Peruvian law and this time there are no exceptions: if you live elsewhere, do not apply yet — we would only waste your time.</p>
-    <p class="m-0 mt-2 text-amber-900">This is the first round with the new challenge: the requirements and the timings will change with what these deliveries teach us. We say so up front — and if something strikes you as badly measured, say so in your delivery. It counts in your favour.</p>
+  <h1>Hiring at TailorMind</h1>
+  <p class="lead">Remote, from Peru. We pay for the AI tooling you use.</p>
+  <p>We hire for <strong>criterio</strong>, the capacity to make sound judgments under uncertainty, and for autonomy with AI tooling.</p>
+  <div class="not-prose my-6 grid gap-4 sm:grid-cols-2 text-[15px] leading-relaxed">
+    <a href={`${b}/en/product/`} class="block p-4 rounded border border-emerald-300 bg-emerald-50 no-underline text-zinc-900">
+      <p class="font-semibold m-0">Product &amp; Quality Analyst · <span class="text-emerald-800">open</span></p>
+      <p class="m-0 mt-1">No coding required. 40 hours a week, Peru only. 10-minute application.</p>
+    </a>
+    <a href={`${b}/en/role/`} class="block p-4 rounded border border-zinc-200 bg-zinc-50 no-underline text-zinc-900">
+      <p class="font-semibold m-0">Senior Full-stack Developer · <span class="text-zinc-600">closed</span></p>
+      <p class="m-0 mt-1">Applications closed on 26 October. We are reviewing and will reply to every person.</p>
+    </a>
   </div>
 
   <RetoDemo lang="en" />
 
   <p>Curious about what we build? Have a look at <a href="https://tailormind.io/" target="_blank" rel="noopener">tailormind.io</a>.</p>
   <ul>
-    <li><a href={`${b}/en/role/`}>Read the role</a></li>
+    <li><a href={`${b}/en/product/`}>Product &amp; Quality Analyst</a></li>
+    <li><a href={`${b}/en/role/`}>Senior Full-stack Developer</a></li>
     <li><a href={`${b}/en/process/`}>How our hiring process works</a></li>
     <li><a href={`${b}/en/flow/`}>Process flow diagram</a></li>
     <li><a href={`${b}/en/assessment/`}>About the assessment</a></li>

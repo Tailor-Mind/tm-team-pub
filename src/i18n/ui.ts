@@ -4,7 +4,8 @@ export const defaultLang = 'en';
 export const ui = {
   en: {
     'nav.process': 'Process',
-    'nav.role': 'Role',
+    'nav.role': 'Developer',
+    'nav.product': 'Analyst',
     'nav.flow': 'Flow',
     'nav.apply': 'Apply',
     'nav.assessment': 'Assessment',
@@ -14,12 +15,14 @@ export const ui = {
     'site.tagline': 'Hiring senior AI-empowered developers, remote from Peru.',
     'comp.reveal': 'Reveal compensation range',
     'comp.value': 'Monthly: 4–6 Peruvian minimum wages (PEN). Final offer based on level and seniority.',
+    'comp.valueProduct': 'Monthly: S/ 1,500 to 2,000 gross (PEN), 40 hours a week. Final offer based on the process.',
     'comp.gateLabel': 'Enter your email to reveal',
     'comp.gateSubmit': 'Reveal',
   },
   es: {
     'nav.process': 'Proceso',
-    'nav.role': 'Rol',
+    'nav.role': 'Desarrollo',
+    'nav.product': 'Analista',
     'nav.flow': 'Flujo',
     'nav.apply': 'Postular',
     'nav.assessment': 'Evaluación',
@@ -29,6 +32,7 @@ export const ui = {
     'site.tagline': 'Contratamos desarrolladores senior potenciados por IA, remoto desde Perú.',
     'comp.reveal': 'Revelar rango de compensación',
     'comp.value': 'Mensual: 4–6 sueldos mínimos peruanos (PEN). Oferta final según nivel y seniority.',
+    'comp.valueProduct': 'Mensual: S/ 1,500 a 2,000 brutos (PEN), 40 horas semanales. Oferta final según el proceso.',
     'comp.gateLabel': 'Ingresa tu email para revelar',
     'comp.gateSubmit': 'Revelar',
   },

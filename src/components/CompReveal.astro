@@ -1,7 +1,7 @@
 ---
 import { t, type Lang } from '../i18n/ui';
-interface Props { lang: Lang; }
-const { lang } = Astro.props;
+interface Props { lang: Lang; role?: 'dev' | 'product'; }
+const { lang, role = 'dev' } = Astro.props;
 // Apps Script Web App URL — set after clasp deploy.
 // Public site reads at runtime from a meta tag so it can be swapped without rebuild.
 ---
@@ -19,10 +19,10 @@ const { lang } = Astro.props;
     </button>
   </form>
   <div id="comp-out" class="mt-4 hidden text-zinc-800 font-medium">
-    {t(lang,'comp.value')}
+    {t(lang, role === 'product' ? 'comp.valueProduct' : 'comp.value')}
   </div>
 </div>
-<script is:inline define:vars={{ lang }}>
+<script is:inline define:vars={{ lang, role }}>
   const form = document.getElementById('comp-form');
   const out = document.getElementById('comp-out');
   form?.addEventListener('submit', (e) => {
@@ -31,6 +31,6 @@ const { lang } = Astro.props;
     out.classList.remove('hidden');
     // El evento lo arma el layout: asi este correo queda pegado a la campana
     // que lo trajo, en vez de ser un correo suelto sin procedencia.
-    window.tmTrack?.('comp_reveal', { email, lang });
+    window.tmTrack?.('comp_reveal', { email, lang, role });
   });
 </script>
